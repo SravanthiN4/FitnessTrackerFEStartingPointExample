@@ -46,9 +46,7 @@ const RegisterLogin = (props) => {
 
     const handleChange = (event) => setUsername(event.target.value);
     const handlePasswordChange = (event) => setPassword(event.target.value)
-    const handleName = (event) => setName(event.target.value)
-    const handleEmail = (event) => setEmail(event.target.value)
-
+    
     if (hasTriggeredError) return <p style={{ color: 'red' }}> Whoopse, looks like you need to fix something! </p>
 
     return (
