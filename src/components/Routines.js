@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Activities = () => {
+const Routines = () => {
     return (
        
         <div>
-            Welcome to Activities Page!!
+            Welcome to Routines Page!!
         </div>
        
     );
 };
 
-export default Activities;
+export default Routines;

@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Activities = () => {
+const User = () => {
     return (
        
         <div>
-            Welcome to Activities Page!!
+            Welcome to Users Page!!
         </div>
        
     );
 };
 
-export default Activities;
+export default User;
