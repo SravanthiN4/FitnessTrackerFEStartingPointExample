@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Activities from './Activities';
 import ColorBox from './ColorBox';
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
             <ColorBox boxColor="blue"></ColorBox>
             <ColorBox boxColor="red"></ColorBox>
             <ColorBox boxColor="green"></ColorBox>
+            <Activities></Activities>
         </>
     );
 };
