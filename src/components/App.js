@@ -39,14 +39,6 @@ const App = () => {
             <Link className='link' to = "/home">Home</Link>
             <Route path = "/home"><Home/></Route> 
 
-           
-
-            
-
-            
-
-           
-        
         </BrowserRouter>
         </div>
     );

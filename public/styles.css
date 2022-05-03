@@ -58,6 +58,8 @@
     float: right;
     padding: 1em;
     font-family: 'Tapestry', cursive;
+    position: sticky;
+    top:0;
   }
 
   .link:hover {
