@@ -37,7 +37,7 @@ const App = () => {
             <Route path = "/user"><User/></Route> 
        
             <Link className='link' to = "/home">Home</Link>
-            <Route path = "/user"><Home/></Route> 
+            <Route path = "/home"><Home/></Route> 
 
            
 
