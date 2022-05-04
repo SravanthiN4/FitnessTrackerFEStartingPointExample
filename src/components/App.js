@@ -77,9 +77,7 @@ const App = () => {
             <Link className='link' to = "/activities">Activities</Link>
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
 
-            
-            <Link className='link' to = "/home">Home</Link>
-            <Route path = "/home"><Home/></Route>
+        
 
             </BrowserRouter>
 
