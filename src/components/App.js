@@ -35,19 +35,19 @@ const App = () => {
                     <div id="myProfile">
 
 
-                        <Link className='link' to="/login">Login</Link>
+                        <Link id='link' to="/login">Login</Link>
                         <Route path="/login"><Login setLoggedIn={setLoggedIn}
                                 loggedIn={loggedIn}/>Login</Route>
 
-                        <Link className='link' to="/signUp">SignUp</Link>
+                        <Link id='link' to="/signUp">SignUp</Link>
                         <Route path="/signUp"
                             setLoggedIn={setLoggedIn}
                             loggedIn={loggedIn}><RegisterLogin/>Sign Up</Route>
 
-                        <Link className='link' to="/user">User</Link>
+                        <Link id='link' to="/user">User</Link>
                         <Route path="/user" loggedIn={loggedIn}><User/>
                             <div>
-                                <Link className='link' to="/myRoutines">MyRoutines</Link>
+                                <Link id='link' to="/myRoutines">MyRoutines</Link>
                                 <Route path="/myRoutines"><MyRoutines/></Route>
                                 <button className="LogOut"
                                     onClick={logOut}>Log out</button>
@@ -59,17 +59,17 @@ const App = () => {
 
                 </div>
 
-
-                <Link className='link' to="/activities">Activities</Link>
+<div className='link'>
+                <Link id='link' to="/activities">Activities</Link>
                 <Route path="/activities"><Activities/></Route>
 
 
-                <Link className='link' to="/home">Home</Link>
+                <Link id='link' to="/home">Home</Link>
                 <Route path="/home"><Home/></Route>
-                <Link className='link' to="/routines">Routines</Link>
+                <Link id='link' to="/routines">Routines</Link>
                 <Route path="/routines"><Routines routines={routines}
                         setRoutines={setRoutines}/></Route>
-
+</div>
 
             </BrowserRouter>
 
