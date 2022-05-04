@@ -119,6 +119,10 @@ flex-direction: column;
     border : 1px solid gray;
     padding: 10px;
   }
+  .postRoutine {
+    border : 1px solid gray;
+    padding: 10px;
+  }
 
   #me{
     font-size: medium;
