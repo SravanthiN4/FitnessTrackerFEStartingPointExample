@@ -3,7 +3,7 @@ const baseUrl = 'https://fitnesstrac-kr.herokuapp.com/api';
 
 export const registerUser = async (userObject) => {
     const url = `${baseUrl}/users/register`;
-    const response = await fetch(url, {
+    try {const response = await fetch(url, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -15,8 +15,12 @@ export const registerUser = async (userObject) => {
     if (json.data === null) {
         return false;
     } else {
+        console.log("json data in register", json.data)
         localStorage.setItem('UserToken', json.data.token);
         return true;
+    }}
+    catch(error){
+        console.log("this is register user api error", error)
     }
 }
 

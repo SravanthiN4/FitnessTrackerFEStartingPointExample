@@ -4,7 +4,7 @@ const User = () => {
     return (
        
         <div>
-            Welcome to Users Page!!
+      
         </div>
        
     );

@@ -1,47 +1,77 @@
-import React from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import Home from './Home';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
 import User from './User';
+import Login from './Login'
+import RegisterLogin from './RegisterLogin';
 
 const App = () => {
-    // useEffect(async () => {
-    //     console.log("IN HERE")
-    //     const res = await fetch("https://fitnesstrac-kr.herokuapp.com/api/activities")
-    //     // const res = await fetch("heroku-link");
-    //     // const res = await fetch("localhost:3000");
-    //     const json = await res.json();
-    //     // setReq(json);
-    //     console.log(json)
-    //     // return () => { }
-    // }, [])
 
-    return (
-        <div className='app'>
+
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        setLoggedIn(!!localStorage.getItem("UserToken"))
+    }, []);
+
+
+    const logOut = () => {
+        localStorage.removeItem("UserToken");
+        setLoggedIn(false);
+
+    }
+
+    return (<div className='app'>
         <BrowserRouter>
-        
-            <h1 className='header'>Fitness Tracker</h1>
+            <div id="header">
+                <h1 className='header'>Fitness Tracker
+                </h1>
+                <div id="myProfile">
+                  
 
-            <Link className='link' to = "/myRoutines">MyRoutines</Link>
-            <Route path = "/myRoutines"><MyRoutines/></Route>
+                        <Link className='link' to="/login">Login</Link>
+                        <Route path="/login"><Login setLoggedIn={setLoggedIn}
+                                loggedIn={loggedIn}/>Login</Route>
+                       
+                        <Link className='link' to="/signUp">SignUp</Link>
+                        <Route path="/signUp"
+                            setLoggedIn={setLoggedIn}
+                            oggedIn={loggedIn}><RegisterLogin/>Sign Up</Route>
+                       
+                        <Link className='link' to="/user">User</Link>
+                        <Route path="/user"><User/>
+                            <div>
+                                <Link className='link' to="/myRoutines">MyRoutines</Link>
+                                <Route path="/myRoutines"><MyRoutines/></Route>
+                                <button className="LogOut"
+                                    onClick={logOut}>Log out</button>
+                            </div>
 
-            <Link className='link' to = "/activities">Activities</Link>
-            <Route path = "/activities"><Activities/></Route>
+                        </Route>
+                  
+                </div>
 
-            <Link className='link' to = "/routines">Routines</Link>
-            <Route path = "/routines"><Routines/></Route>
+            </div>
 
-            <Link className='link' to = "/user">User</Link>
-            <Route path = "/user"><User/></Route> 
-       
-            <Link className='link' to = "/home">Home</Link>
-            <Route path = "/home"><Home/></Route> 
+
+            <Link className='link' to="/activities">Activities</Link>
+            <Route path="/activities"><Activities/></Route>
+
+            <Link className='link' to="/routines">Routines</Link>
+            <Route path="/routines"><Routines/></Route>
+
+
+            <Link className='link' to="/home">Home</Link>
+            <Route path="/home"><Home/></Route>
+
 
         </BrowserRouter>
-        </div>
-    );
+
+
+    </div>);
 };
 
 export default App;
