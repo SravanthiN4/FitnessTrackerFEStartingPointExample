@@ -194,6 +194,7 @@ export const getRoutines = async () => {
             }
         })
         const routines = await response.json()
+        console.log("api",routines)
         return routines;
     } catch (error) {
         console.log("error in getRoutines!")

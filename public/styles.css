@@ -2,8 +2,6 @@
  * It is very likely you don't need to change this file. 
  */
 
-
-
  * {
    border: 0;
    margin: 0;
@@ -105,6 +103,17 @@
   input{
     border: 1px solid blue;
   }
+  .routine {
+    border: 1px solid black ;
+    padding: 10px;
+    
+  }
+  .activity {
+    border : 1px solid gray;
+    padding: 10px;
+  }
+
+  
 
   
  
