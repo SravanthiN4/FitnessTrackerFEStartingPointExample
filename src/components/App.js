@@ -66,8 +66,10 @@ const App = () => {
                 </div>
 
 
-                <Link className='link' to="/activities">Activities</Link>
-                <Route path="/activities"><Activities/></Route>
+            
+               
+             <Link className='link' to = "/routines">Routines</Link>
+             <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>  
 
             <Link className='link' to = "/myRoutines">MyRoutines</Link>
             <Route path = "/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic}/></Route>
@@ -75,6 +77,9 @@ const App = () => {
             <Link className='link' to = "/activities">Activities</Link>
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
 
+            
+            <Link className='link' to = "/home">Home</Link>
+            <Route path = "/home"><Home/></Route>
 
             </BrowserRouter>
 
