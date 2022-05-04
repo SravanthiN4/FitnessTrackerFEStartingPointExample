@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { registerUser } from "../api/index.js";
+import {registerUser} from "../api/index.js";
 
 const RegisterLogin = (props) => {
 
@@ -9,57 +9,50 @@ const RegisterLogin = (props) => {
     const [hasTriggeredError, setHasTriggeredError] = useState(false);
     const {loggedIn, setLoggedIn} = props
 
-  
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setUsername('');
+        setPassword('');
 
-            setUsername('');
-            setPassword('');
-        
         const userObject = {
-                username: username,
-                password: password
-            }
+            username: username,
+            password: password
+        }
 
-       
-
-        const didLoggedInWork = await registerUser(userObject);
-        setLoggedIn(didLoggedInWork);
-
+        const didRegistrationWork = await registerUser(userObject);
+        setLoggedIn(didRegistrationWork);
     
 
 
     }
 
-    
-
 
     const handleChange = (event) => setUsername(event.target.value);
     const handlePasswordChange = (event) => setPassword(event.target.value)
-    
-    if (hasTriggeredError) return <p style={{ color: 'red' }}> Whoopse, looks like you need to fix something! </p>
 
-    return (
-        <div id='Register'>
-            {!loggedIn? 
-            <>
+    if (hasTriggeredError) 
+        return <p style={{ color: 'red' }}> Whoopse,
+        looks like you need to fix something !</p>
+
+    
+
+    return (<div id='SignUp-container'>
+            {!loggedIn? <>
             <form onSubmit={handleSubmit}>
-                <p>
-             <label htmlFor='username'>Create Username: </label>
-            <input type='text' name='username' value={username} onChange={handleChange} /></p>
-            <p>
-            <label htmlFor='password'>Create Password: </label></p><p>
-            <input type='password' name='password' value={password} onChange={handlePasswordChange} /></p>
+                <label htmlFor='username'>Create Username:</label>
+                <input type='text' name='username' value={username} onChange={handleChange} />
+                <label htmlFor='password'>Create Password:</label>
+                <input type='password' name='password' value={password} onChange={handlePasswordChange} />
                 {hasTriggeredError &&
                     <p style={{ color: 'red' }}> Whoopse, looks like you need to fix something! </p>
                 }
-                <button id="summit" type='submit'>Submit</button>
-            </form> </> : <p> You already have an account and are signed in!</p>}
-        </div>
-    )
-}
+                <button id="submit" type='submit'>Submit</button>
+            </form> </> :
+            <p>You already have an account and are signed in!</p>}
+        </div>)
 
+}
 
 
 export default RegisterLogin

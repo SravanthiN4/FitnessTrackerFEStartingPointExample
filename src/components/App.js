@@ -42,10 +42,10 @@ const App = () => {
                         <Link className='link' to="/signUp">SignUp</Link>
                         <Route path="/signUp"
                             setLoggedIn={setLoggedIn}
-                            oggedIn={loggedIn}><RegisterLogin/>Sign Up</Route>
+                            loggedIn={loggedIn}><RegisterLogin/>Sign Up</Route>
 
                         <Link className='link' to="/user">User</Link>
-                        <Route path="/user"><User/>
+                        <Route path="/user" loggedIn={loggedIn}><User/>
                             <div>
                                 <Link className='link' to="/myRoutines">MyRoutines</Link>
                                 <Route path="/myRoutines"><MyRoutines/></Route>
