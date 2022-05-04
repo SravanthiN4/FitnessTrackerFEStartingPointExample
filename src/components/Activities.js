@@ -6,6 +6,9 @@ import  { getAllActivities }  from '../api/index';
 const Activities = (props) => {
     const {activities, setActivities} = props;
 
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+
     useEffect(() => {
         (async () => {
             const activities = await getAllActivities();
@@ -13,6 +16,19 @@ const Activities = (props) => {
             setActivities(activities);
         })();
     }, []);
+
+    const handleCreateActivity = () => {
+        console.log("creating a new activity");
+
+        const emptyActivity = {
+            name: name,
+            description: description
+        }
+
+        
+    }
+
+
     return (
        
         <div className = "activitiesBox">
