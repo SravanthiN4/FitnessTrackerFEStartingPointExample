@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { registerUser } from "./api";
+import { registerUser } from "../api/index.js";
 
 const RegisterLogin = (props) => {
 
@@ -13,27 +13,18 @@ const RegisterLogin = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (password.length < 5) {
-            setHasTriggeredError(true);
-        }
-        else {
-            console.log('username: ', username);
-            console.log('password: ', password);
+
             setUsername('');
             setPassword('');
-            setName('');
-            setEmail('');
-        }
         
-        const dataObject = {
-            user: {
+        const userObject = {
                 username: username,
-                password: password},
-        }
+                password: password
+            }
 
        
 
-        const didLoggedInWork = await registerUser(dataObject);
+        const didLoggedInWork = await registerUser(userObject);
         setLoggedIn(didLoggedInWork);
 
     
@@ -54,10 +45,12 @@ const RegisterLogin = (props) => {
             {!loggedIn? 
             <>
             <form onSubmit={handleSubmit}>
+                <p>
              <label htmlFor='username'>Create Username: </label>
-            <input type='text' name='username' value={username} onChange={handleChange} /> 
-            <label htmlFor='password'>Create Password: </label>
-            <input type='password' name='password' value={password} onChange={handlePasswordChange} />
+            <input type='text' name='username' value={username} onChange={handleChange} /></p>
+            <p>
+            <label htmlFor='password'>Create Password: </label></p><p>
+            <input type='password' name='password' value={password} onChange={handlePasswordChange} /></p>
                 {hasTriggeredError &&
                     <p style={{ color: 'red' }}> Whoopse, looks like you need to fix something! </p>
                 }
