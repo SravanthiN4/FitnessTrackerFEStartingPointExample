@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import Routines from './Routines';
@@ -18,6 +18,10 @@ const App = () => {
     //     // return () => { }
     // }, [])
 
+    const [activity, setActivity] = useState([]);
+    const [routines, setRoutines] = useState([]);
+
+
     return (
         <div className='app'>
         <BrowserRouter>
@@ -28,10 +32,11 @@ const App = () => {
             <Route path = "/myRoutines"><MyRoutines/></Route>
 
             <Link className='link' to = "/activities">Activities</Link>
-            <Route path = "/activities"><Activities/></Route>
+            <Route path = "/activities"><Activities activity = {activity} setActivity = {setActivity}/></Route>
 
             <Link className='link' to = "/routines">Routines</Link>
-            <Route path = "/routines"><Routines/></Route>
+            <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>
+
 
             <Link className='link' to = "/user">User</Link>
             <Route path = "/user"><User/></Route> 

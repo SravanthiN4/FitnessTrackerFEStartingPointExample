@@ -1,14 +1,21 @@
 import React from 'react';
 
 
-export const activities = async () => {
-    return fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then(response => response.json())
-        .then(result => {
-          console.log(result);
+export const getAllActivities = async () => {
+
+    let response;
+    try {
+        response = await fetch(`${baseUrl}/activities`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-        .catch(console.error);
+        const returnedActivities = await response.json()
+        return returnedActivities;
+    } catch (error) {
+        console.log("error in getAllActivities!")
+        throw error;
+    }
+
 }
