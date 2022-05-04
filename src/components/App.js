@@ -36,24 +36,27 @@ const App = () => {
         
             <BrowserRouter>
                 <div id="header">
-                    <h1 className='header'>Fitness Tracker
-                    </h1>
-                    <div id="myProfile">
+                <h1 className='header'>Fitness Tracker</h1>
+                    <div id= "buttonRoutesBox">
+                     <button className="button"><Link id='link' to="/login">Login</Link></button>
+                     <button className="button"><Link id='link' to="/signUp">SignUp</Link></button>
+                     <button className="button"> <Link id='link' to="/user">User</Link></button>  
+                     <button className="button"><Link id='link' to="/myRoutines">MyRoutines</Link></button>  
+                    </div>
+                </div>
 
-
-                        <Link id='link' to="/login">Login</Link>
+                <div id="myProfile">
                         <Route path="/login"><Login setLoggedIn={setLoggedIn}
-                                loggedIn={loggedIn}/>Login</Route>
+                                loggedIn={loggedIn}/>Login
+                        </Route>
 
-                        <Link id='link' to="/signUp">SignUp</Link>
                         <Route path="/signUp"
                             setLoggedIn={setLoggedIn}
-                            loggedIn={loggedIn}><RegisterLogin/>Sign Up</Route>
+                            loggedIn={loggedIn}><RegisterLogin/>Sign Up
+                        </Route>
 
-                        <Link id='link' to="/user">User</Link>
                         <Route path="/user" loggedIn={loggedIn}><User/>
                             <div>
-                                <Link id='link' to="/myRoutines">MyRoutines</Link>
                                 <Route path="/myRoutines"><MyRoutines/></Route>
                                 <button className="LogOut"
                                     onClick={logOut}>Log out</button>
@@ -63,18 +66,16 @@ const App = () => {
 
                     </div>
 
-                </div>
-
 
             <div className='link'>
                
-             <Link id='link' to = "/routines">Routines</Link>
+             <Link id='routineLink' to = "/routines">Routines</Link>
              <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>  
 
-            <Link id='link' to = "/myRoutines">MyRoutines</Link>
+            <Link id='myRoutineLink' to = "/myRoutines">MyRoutines</Link>
             <Route path = "/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic}/></Route>
 
-            <Link id='link' to = "/activities">Activities</Link>
+            <Link id='activitiesLink' to = "/activities">Activities</Link>
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
 
             </div>
@@ -85,3 +86,5 @@ const App = () => {
         </div>);
         }
         export default App;
+
+

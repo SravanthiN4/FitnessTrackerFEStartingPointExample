@@ -1,10 +1,3 @@
-//As any user on the Routines tab, I want to:
-
-//see a list of all public routines showing:
-//The routine name, goal, and creator's username
-//A list of activities for the routine, 
-//including their name, description, and duration and/or count
-
 import React, { useEffect, useState } from 'react';
 import  { getAllActivities }  from '../api/index';
 
@@ -22,10 +15,10 @@ const Activities = (props) => {
     }, []);
     return (
        
-        <div>
+        <div className = "activitiesBox">
            {
                activities.map(activity => 
-                    <div className='routine' key = {activity.id}>
+                    <div className='activities' key = {activity.id}>
                         <h2> Activity Name : {activity.name}</h2>
                         <h2>Activity Description: {activity.description}</h2>
 

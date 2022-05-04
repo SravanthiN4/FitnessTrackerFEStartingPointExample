@@ -7,13 +7,11 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   
-  
  }
  
  body {
    height: 30vh;
-   width: 100vw;
+   width: 100%;
    background-image: white;
  }
 
@@ -25,8 +23,6 @@
    overflow: hidden;
  }
  
-
-
  #header {
    display: flex;
    flex-direction: row;
@@ -37,6 +33,9 @@
   text-align: center;
   color: white;
   font-size: xx-large;
+  top: 0;
+  /* position: fixed;
+  width: 100%; */
 }
  
  .header h1 {
@@ -47,28 +46,39 @@
  .header h5 {
    font-size: 1rem;
  }
+
+ .headerBox{
+  display: flex;
+  justify-content: flex-end;
+ }
+
+ .routesBox{
+   border: 1px solid red;
+ }
  
+#routineLink{
+  position: relative
+  
+}
 
+ #routineLink::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #18272F;
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
 
- .link {
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-end;
-    font-size: medium;
-    font-weight: bold;
-    float: right;
-    padding: 1em;
-    font-family: 'Arial', cursive;
-    position: sticky;
-    top:0;
-    border: 2px solid black;
-  }
-
-  .link:hover {
-     color: #00F
-  }
+#routineLink:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
 
 #link {
   color: black;
@@ -124,9 +134,44 @@ flex-direction: column;
     padding: 10px;
   }
 
-  #me{
-    font-size: medium;
+  .activitiesBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 10px solid red;
+    width: 75%;
+    height: 50%;
   }
+  .activities {
+    border: 5px solid black;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 2px 2px blue;
+    margin: 10px;
+  }
+
+  .button{
+    background-color: whitesmoke;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: medium;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: color 1s ease-in-out, box-shadow .6s ease-in-out;
+    border-radius: 15px;
+}
+  
+
+.button:hover{
+  opacity: 1;
+  color: #fff;
+  box-shadow: inset 200px 0 0 0 #54b3d6;
+};
+
+
+  
 
   
  
