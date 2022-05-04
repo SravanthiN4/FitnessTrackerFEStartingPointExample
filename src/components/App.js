@@ -9,10 +9,16 @@ import Login from './Login'
 import RegisterLogin from './RegisterLogin';
 
 const App = () => {
+ const [routines, setRoutines] = useState([]);
+ const [name, setName] = useState("");
+ const [goal,setGoal] = useState("");
+ const [isPublic,setIsPublic] = useState(false);
+ const [activities, setActivities] = useState([]);
+ const [isLoggedIn,setIsLoggedIn] = useState(false);
 
 
     const [loggedIn, setLoggedIn] = useState(false);
-    const [routines, setRoutines] = useState([])
+
 
     useEffect(() => {
         setLoggedIn(!!localStorage.getItem("UserToken"))
@@ -60,16 +66,18 @@ const App = () => {
                 </div>
 
 
-                <Link className='link' to="/activities">Activities</Link>
-                <Route path="/activities"><Activities/></Route>
+            
+               
+             <Link className='link' to = "/routines">Routines</Link>
+             <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>  
 
+            <Link className='link' to = "/myRoutines">MyRoutines</Link>
+            <Route path = "/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic}/></Route>
 
-                <Link className='link' to="/home">Home</Link>
-                <Route path="/home"><Home/></Route>
-                <Link className='link' to="/routines">Routines</Link>
-                <Route path="/routines"><Routines routines={routines}
-                        setRoutines={setRoutines}/></Route>
+            <Link className='link' to = "/activities">Activities</Link>
+            <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
 
+        
 
             </BrowserRouter>
 

@@ -203,20 +203,21 @@ export const getRoutines = async () => {
 }
 
 export const postRoutine = async (name, goal, isPublic) => {
-    const token = localStorage.getItem('UserToken');
+    //const token = localStorage.getItem('UserToken');
     let response;
     try {
         response = await fetch(`${baseUrl}/routines`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
+                //'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify(
                 {name: name, goal: goal, isPublic: isPublic}
             )
         })
         const postedRoutine = await response.json()
+        console.log(postedRoutine);
         return postedRoutine;
     } catch (error) {
         console.log("error in postRoutine!")
