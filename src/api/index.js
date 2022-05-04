@@ -3,7 +3,7 @@ const baseUrl = 'https://fitnesstrac-kr.herokuapp.com/api';
 
 export const registerUser = async (userObject) => {
     const url = `${baseUrl}/users/register`;
-    const response = await fetch(url, {
+    try {const response = await fetch(url, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -12,11 +12,15 @@ export const registerUser = async (userObject) => {
     })
     const json = await response.json();
 
-    if (json.data === null) {
+    if (json === null) {
         return false;
     } else {
-        localStorage.setItem('UserToken', json.data.token);
+        console.log("json data in register", json)
+        localStorage.setItem('UserToken', json.token);
         return true;
+    }}
+    catch(error){
+        console.log("this is register user api error", error)
     }
 }
 
@@ -33,10 +37,10 @@ export const login = async (userObject) => {
     })
     const json = await response.json();
 
-    if (json.data === null) {
+    if (json === null) {
         return false;
     } else {
-        localStorage.setItem('UserToken', json.data.token);
+        localStorage.setItem('UserToken', json.token);
         return true;
     }
 }
@@ -199,20 +203,21 @@ export const getRoutines = async () => {
 }
 
 export const postRoutine = async (name, goal, isPublic) => {
-    const token = localStorage.getItem('UserToken');
+    //const token = localStorage.getItem('UserToken');
     let response;
     try {
         response = await fetch(`${baseUrl}/routines`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
+                //'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify(
                 {name: name, goal: goal, isPublic: isPublic}
             )
         })
         const postedRoutine = await response.json()
+        console.log(postedRoutine);
         return postedRoutine;
     } catch (error) {
         console.log("error in postRoutine!")

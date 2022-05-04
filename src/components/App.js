@@ -1,44 +1,87 @@
 import React, {useState, useEffect} from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Home from './Home';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
 import User from './User';
+import Login from './Login'
+import RegisterLogin from './RegisterLogin';
 
 const App = () => {
-    const [activities, setActivities] = useState([]);    
-    const [routines, setRoutines] = useState([]);
+ const [routines, setRoutines] = useState([]);
+ const [name, setName] = useState("");
+ const [goal,setGoal] = useState("");
+ const [isPublic,setIsPublic] = useState(false);
+ const [activities, setActivities] = useState([]);
+ const [isLoggedIn,setIsLoggedIn] = useState(false);
 
 
-    return (
-        <div className='app'>
-        <BrowserRouter>
-        <h1 className='header'>Fitness Tracker</h1>
-            <div className="headerBox">
-                <div className="routesBox">
-                    <button className="button"><Link className='link' to = "/myRoutines">MyRoutines</Link></button>
-                    <button className="button"><Link className='link' to = "/activities">Activities</Link></button>
-                    <button className="button"><Link className='link' to = "/routines">Routines</Link></button>
-                    <button className="button"><Link className='link' to = "/user">User</Link></button> 
-                    <button className="button"><Link className='link' to = "/home">Home</Link></button>
+    const [loggedIn, setLoggedIn] = useState(false);
+
+
+    useEffect(() => {
+        setLoggedIn(!!localStorage.getItem("UserToken"))
+    }, []);
+
+
+    const logOut = () => {
+        localStorage.removeItem("UserToken");
+        setLoggedIn(false);
+
+    }
+
+    return (<div className='app'>
+        
+        
+            <BrowserRouter>
+                <div id="header">
+                    <h1 className='header'>Fitness Tracker
+                    </h1>
+                    <div id="myProfile">
+
+
+                        <Link id='link' to="/login">Login</Link>
+                        <Route path="/login"><Login setLoggedIn={setLoggedIn}
+                                loggedIn={loggedIn}/>Login</Route>
+
+                        <Link id='link' to="/signUp">SignUp</Link>
+                        <Route path="/signUp"
+                            setLoggedIn={setLoggedIn}
+                            loggedIn={loggedIn}><RegisterLogin/>Sign Up</Route>
+
+                        <Link id='link' to="/user">User</Link>
+                        <Route path="/user" loggedIn={loggedIn}><User/>
+                            <div>
+                                <Link id='link' to="/myRoutines">MyRoutines</Link>
+                                <Route path="/myRoutines"><MyRoutines/></Route>
+                                <button className="LogOut"
+                                    onClick={logOut}>Log out</button>
+                            </div>
+
+                        </Route>
+
+                    </div>
+
                 </div>
-            </div>
- 
-            <Route path = "/myRoutines"><MyRoutines/></Route>
 
+
+            <div className='link'>
+               
+             <Link id='link' to = "/routines">Routines</Link>
+             <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>  
+
+            <Link id='link' to = "/myRoutines">MyRoutines</Link>
+            <Route path = "/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic}/></Route>
+
+            <Link id='link' to = "/activities">Activities</Link>
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
 
-            <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>
+            </div>
 
-            <Route path = "/user"><User/></Route> 
-       
-            <Route path = "/home"><Home/></Route> 
-        
+            </BrowserRouter>
 
-        </BrowserRouter>
-        </div>
-    );
-};
 
-export default App;
+        </div>);
+        }
+        export default App;
