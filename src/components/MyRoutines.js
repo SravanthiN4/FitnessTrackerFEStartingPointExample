@@ -41,7 +41,7 @@ const MyRoutines = (props) => {
                 Goal :<input value={goal} onChange={handleGoalChange} />
                 isPublic : <input value={isPublic} onChange={handleIsPublic} />
                Submit: <button onClick={handlePostButtonClick}>
-                Make New Routine Request!
+                Make New Routine Request
                 </button>
         </div>
       
