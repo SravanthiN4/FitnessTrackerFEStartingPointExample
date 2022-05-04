@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { login } from './api/index';
+import { login } from '../api/index';
 
 
 
@@ -11,32 +11,20 @@ const Login = (props) => {
     const {setLoggedIn, loggedIn} = props
 
     const handleSubmit = async (event) => {
-
-
+        
         event.preventDefault();
-        if (password.length < 5) {
-            setHasTriggeredError(true);
-        }
-        else {
-            console.log('username: ', username);
-            console.log('password: ', password);
             setUsername('');
             setPassword('');
-        }
-        
-        const dataObject = {
-            user: {username: username,
-                   password: password},
+
+        const userObject = {
+            username: username,
+            password: password
         }
 
-        const didLoggedInWork = await login(dataObject);
+        const didLoggedInWork = await login(userObject);
         setLoggedIn(didLoggedInWork);
        
-
     }
-
-     
-
 
     const handleChange = (event) => setUsername(event.target.value);
     const handlePasswordChange = (event) => setPassword(event.target.value)
@@ -46,8 +34,8 @@ const Login = (props) => {
         <div id='Login-container'>
             {!loggedIn? <>
            { username.length === 0 ?
-                <div id='div-navbar'> Please sign in below: </div> :
-                <div id='div-navbar'> Hello {username}, please enter in your information </div>}
+                <div id='login-text'> Please sign in below: </div> :
+                <div> Hello {username}, please enter in your information </div>}
             <form onSubmit={handleSubmit}>
                 <label htmlFor='username'>Username:</label>
                 <input type='text' name='username' value={username} onChange={handleChange} />
@@ -56,7 +44,7 @@ const Login = (props) => {
                 {hasTriggeredError &&
                     <p style={{ color: 'red' }}> Whoopse, looks like you need to fix something! </p>
                 }
-                <button id="summit" type='submit'>Submit</button>
+                <button id="submit" type='submit'>Submit</button>
             </form> </> :
             <p>You are already signed in!</p>}
         </div>
