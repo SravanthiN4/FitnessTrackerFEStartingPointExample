@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import Routines from './Routines';
@@ -7,16 +7,7 @@ import Activities from './Activities';
 import User from './User';
 
 const App = () => {
-    // useEffect(async () => {
-    //     console.log("IN HERE")
-    //     const res = await fetch("https://fitnesstrac-kr.herokuapp.com/api/activities")
-    //     // const res = await fetch("heroku-link");
-    //     // const res = await fetch("localhost:3000");
-    //     const json = await res.json();
-    //     // setReq(json);
-    //     console.log(json)
-    //     // return () => { }
-    // }, [])
+ const [routines, setRoutines] = useState([])
 
     return (
         <div className='app'>
@@ -31,7 +22,7 @@ const App = () => {
             <Route path = "/activities"><Activities/></Route>
 
             <Link className='link' to = "/routines">Routines</Link>
-            <Route path = "/routines"><Routines/></Route>
+            <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>
 
             <Link className='link' to = "/user">User</Link>
             <Route path = "/user"><User/></Route> 
