@@ -1,5 +1,6 @@
-import React from 'react';
-import { postRoutine } from '../api';
+import React, {useEffect} from 'react';
+
+import { postRoutine,getMyRoutines } from '../api';
 
 
 
@@ -8,14 +9,20 @@ const MyRoutines = (props) => {
     const {goal, setGoal} = props;
     const {isPublic, setIsPublic} = props;
     
+    const {routines, setRoutines} = props;
 
+    
     const handlePostButtonClick = async() => {
         console.log("Create a Routine ...");
+        
        const data = await postRoutine(name,goal,isPublic);
-        console.log(data);
-        const newRoutine = data.routine;
+        console.log("data",data);
+        
 
-        console.log(newRoutine);
+        
+        const newRoutineList = [data, ...routines]
+        console.log("newlist",newRoutineList);
+        setRoutines(newRoutineList);
 
         setName("");
         setGoal("");
@@ -43,10 +50,18 @@ const MyRoutines = (props) => {
                Submit: <button onClick={handlePostButtonClick}>
                 Make New Routine Request!
                 </button>
+
+                {routines.map (routine => 
+                    <div key = {routine.id}>
+                    <p>Name : {routine.name}</p>
+                    <p>Goal : {routine.goal}</p>
+                    <p>isPublic : {routine.isPublic ? "true": "false"}</p>
+                    </div>)}
         </div>
-      
-       
+
+
     );
 };
+
 
 export default MyRoutines;
