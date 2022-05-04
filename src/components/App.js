@@ -7,32 +7,34 @@ import Activities from './Activities';
 import User from './User';
 
 const App = () => {
- const [routines, setRoutines] = useState([])
-
-    const [activity, setActivity] = useState([]);
+    const [activities, setActivities] = useState([]);    
     const [routines, setRoutines] = useState([]);
 
 
     return (
         <div className='app'>
         <BrowserRouter>
-        
-            <h1 className='header'>Fitness Tracker</h1>
-
-            <Link className='link' to = "/myRoutines">MyRoutines</Link>
+        <h1 className='header'>Fitness Tracker</h1>
+            <div className="headerBox">
+                <div className="routesBox">
+                    <button className="button"><Link className='link' to = "/myRoutines">MyRoutines</Link></button>
+                    <button className="button"><Link className='link' to = "/activities">Activities</Link></button>
+                    <button className="button"><Link className='link' to = "/routines">Routines</Link></button>
+                    <button className="button"><Link className='link' to = "/user">User</Link></button> 
+                    <button className="button"><Link className='link' to = "/home">Home</Link></button>
+                </div>
+            </div>
+ 
             <Route path = "/myRoutines"><MyRoutines/></Route>
 
-            <Link className='link' to = "/activities">Activities</Link>
-            <Route path = "/activities"><Activities activity = {activity} setActivity = {setActivity}/></Route>
+            <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
 
-            <Link className='link' to = "/routines">Routines</Link>
             <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>
 
-            <Link className='link' to = "/user">User</Link>
             <Route path = "/user"><User/></Route> 
        
-            <Link className='link' to = "/home">Home</Link>
             <Route path = "/home"><Home/></Route> 
+        
 
         </BrowserRouter>
         </div>

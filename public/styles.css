@@ -7,13 +7,11 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   
-  
  }
  
  body {
    height: 30vh;
-   width: 100vw;
+   width: 100%;
    background-image: white;
  }
 
@@ -43,6 +41,15 @@
  .header h5 {
    font-size: 1rem;
  }
+
+ .headerBox{
+  display: flex;
+  justify-content: flex-end;
+ }
+
+ .routesBox{
+   border: 1px solid red;
+ }
  
  .link {
     
@@ -61,8 +68,17 @@
   }
 
   .link:hover {
-     color: #00F
-  }
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgb(0 0 0 / 0%);
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
 
   .routine {
     border: 1px solid black ;
@@ -73,6 +89,39 @@
     border : 1px solid gray;
     padding: 10px;
   }
+
+  .activitiesBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 10px solid red;
+    width: 75%;
+    height: 50%;
+  }
+  .activities {
+    border: 5px solid black;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 2px 2px blue;
+    margin: 10px;
+  }
+
+  .button{
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: medium;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+
+}
+  
+
+.button:hover{opacity: 1};
+
 
   
 

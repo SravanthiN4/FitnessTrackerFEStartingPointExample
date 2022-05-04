@@ -1,38 +1,44 @@
-import React, {useState, useEffect} from 'react';
-import { getAllActivities} from '../api'
+import React, { useEffect, useState } from 'react';
+import  { getAllActivities }  from '../api/index';
 
 
-// need to getAllActivities if a user is not logged in
-// need to getActivities 
 
 const Activities = (props) => {
-console.log(getAllActivities)
-
     const {activities, setActivities} = props;
 
-
-useEffect(() => {
-    (async () => {
-        const activities = await getAllActivities();
-        console.log(activities)
-        setActivities(activities);
-    })();
-}, []);
-
-
+    useEffect(() => {
+        (async () => {
+            const activities = await getAllActivities();
+            console.log("activities",activities);
+            setActivities(activities);
+        })();
+    }, []);
     return (
+       
+        <div className = "activitiesBox">
+           {
+               activities.map(activity => 
+                    <div className='activities' key = {activity.id}>
+                        <h2> Activity Name : {activity.name}</h2>
+                        <h2>Activity Description: {activity.description}</h2>
 
-        <div>
-            {
-            activities.map( activity => 
-                   <div className="activity" key = {activity.id}> 
-                   <h2>Activity Name: {activity.name}</h2>
-                   <h2>Activitiy Description: {activity.description}</h2>
-                   </div>)
-            }
+                    {/* <div className='activity'>
+                        <h2>Activity Details : </h2>
+                        {routine.activities.map(rActivity => <div key = {rActivity.id}>
+                            <h2>Name : {rActivity.name}</h2>
+                            <h2>Description : {rActivity.description}</h2>
+                            <h2>Duration: {rActivity.duration}</h2>
+                            <h2>Count: {rActivity.count}</h2>
 
+                        </div>)}
+
+                        </div> */}
+
+                        </div>
+                )
+           }
         </div>
-    
+       
     );
 };
 
