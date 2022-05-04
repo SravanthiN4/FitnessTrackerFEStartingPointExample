@@ -16,6 +16,8 @@ const Routines = (props) => {
     useEffect(() => {
         (async () => {
             const routines = await getRoutines();
+
+            console.log("routines",routines);
             setRoutines(routines);
         })();
     }, []);
@@ -29,19 +31,23 @@ const Routines = (props) => {
                         <h2>Routine Goal : {routine.goal}</h2>
                         <h2>Routine Creator : {routine.creatorName}</h2>
 
-                    <div className='activity'>
-                        <h2>Activity Details : </h2>
-                        {routine.activities.map(rActivity => <div key = {rActivity.id}>
-                            <h2>Name : {rActivity.name}</h2>
-                            <h2>Description : {rActivity.description}</h2>
-                            <h2>Duration: {rActivity.duration}</h2>
-                            <h2>Count: {rActivity.count}</h2>
+                        
+                    <h2>Activity Details : </h2>
 
-                        </div>)}
-
-                        </div>
-
-                        </div>
+           {  routine.activities ? (
+						routine.activities.map((rActivity) => (
+							<div key={rActivity.id}>
+								
+								<h2>Name : {rActivity.name}</h2>
+                                <h2>Description : {rActivity.description}</h2>
+                                <h2>Duration: {rActivity.duration}</h2>
+                                <h2>Count: {rActivity.count}</h2>
+                            </div>
+							
+						))
+					) : null}
+                   
+                 </div>
                 )
            }
         </div>
