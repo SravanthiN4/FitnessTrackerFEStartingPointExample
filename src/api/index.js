@@ -12,11 +12,11 @@ export const registerUser = async (userObject) => {
     })
     const json = await response.json();
 
-    if (json.data === null) {
+    if (json === null) {
         return false;
     } else {
-        console.log("json data in register", json.data)
-        localStorage.setItem('UserToken', json.data.token);
+        console.log("json data in register", json)
+        localStorage.setItem('UserToken', json.token);
         return true;
     }}
     catch(error){
@@ -37,10 +37,10 @@ export const login = async (userObject) => {
     })
     const json = await response.json();
 
-    if (json.data === null) {
+    if (json === null) {
         return false;
     } else {
-        localStorage.setItem('UserToken', json.data.token);
+        localStorage.setItem('UserToken', json.token);
         return true;
     }
 }
