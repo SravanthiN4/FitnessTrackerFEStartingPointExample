@@ -7,80 +7,92 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   
-  
  }
  
  body {
    height: 30vh;
-   width: 100vw;
+   width: 100%;
    background-image: white;
  }
 
  
  .app {
-   display:grid;
-   grid-template-columns: auto auto auto auto auto;
-   grid-template-rows: auto;
-   grid-gap: 8px;
+   display:flex;
+   justify-content: space-evenly;
+   flex-direction: column;
    overflow: hidden;
  }
  
- /* .header {
-   grid-row: 1;
-   background-color: gray;
-   grid-column: 1 / -1;
-   padding: 8px;
-   text-align: center;
-   color: white;
- } */
-
  #header {
-   display: grid;
-   grid-template-columns: auto auto auto auto auto;
-  grid-row: 1;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   align-items: stretch;
   background-color: gray;
-  grid-column: 1 / 6;
   padding: 8px;
   text-align: center;
   color: white;
+  font-size: xx-large;
+  top: 0;
+  /* position: fixed;
+  width: 100%; */
 }
  
  .header h1 {
-   /* grid-column-start:1;
-   grid-column-end:4;  */
    font-family: 'Parisienne', cursive;
-   font-size: 3.2rem;
+   font-size: 5rem;
  }
  
  .header h5 {
    font-size: 1rem;
  }
- 
- .link {
-    color: black;
-    text-decoration: none;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    font-size: medium;
-    font-weight: bold;
-    float: right;
-    padding: 1em;
-    font-family: 'Tapestry', cursive;
-    position: sticky;
-    top:0;
-  }
 
-  .link:hover {
-     color: #00F
-  }
+ .headerBox{
+  display: flex;
+  justify-content: flex-end;
+ }
+
+ .routesBox{
+   border: 1px solid red;
+ }
+ 
+#routineLink{
+  position: relative
+  
+}
+
+ #routineLink::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #18272F;
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
+
+#routineLink:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+#link {
+  color: black;
+  text-decoration: none;
+  padding: 1em;
+  font-size: large;
+}
+
 
   #myProfile {
-    grid-column-start:5;
-    grid-column-end: 6;
+display: flex;
+flex-direction: column;
     background-color: white;
-    font-family: 'Tapestry', cursive;
+    font-family: 'Arial', cursive;
     text-decoration: none;
     color: black;
     border-radius: 30px;
@@ -90,7 +102,7 @@
 
 
   #main{
-    grid-row:4;
+
     padding: 10%;
   }
 
@@ -105,8 +117,12 @@
   }
 
   .routine {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     border: 1px solid black ;
-    padding: 10px;
+    padding: 30px;
+    margin: 30px;
     
   }
   .activity {
@@ -117,6 +133,43 @@
     border : 1px solid gray;
     padding: 10px;
   }
+
+  .activitiesBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 10px solid red;
+    width: 75%;
+    height: 50%;
+  }
+  .activities {
+    border: 5px solid black;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 2px 2px blue;
+    margin: 10px;
+  }
+
+  .button{
+    background-color: whitesmoke;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: medium;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: color 1s ease-in-out, box-shadow .6s ease-in-out;
+    border-radius: 15px;
+}
+  
+
+.button:hover{
+  opacity: 1;
+  color: #fff;
+  box-shadow: inset 200px 0 0 0 #54b3d6;
+};
+
 
   
 
