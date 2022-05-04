@@ -16,12 +16,12 @@ const Login = (props) => {
             setUsername('');
             setPassword('');
 
-        const dataObject = {
-            user: {username: username,
-                   password: password},
+        const userObject = {
+            username: username,
+            password: password
         }
 
-        const didLoggedInWork = await login(dataObject);
+        const didLoggedInWork = await login(userObject);
         setLoggedIn(didLoggedInWork);
        
     }
