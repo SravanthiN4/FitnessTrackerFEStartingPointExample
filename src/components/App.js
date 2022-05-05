@@ -4,6 +4,7 @@ import Home from './Home';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
+import MyActivities from './MyActivities';
 import User from './User';
 import Login from './Login'
 import RegisterLogin from './RegisterLogin';
@@ -44,12 +45,17 @@ const App = () => {
                     {!loggedIn? <>
                      <button className="button"><Link id='link' to="/login">Login</Link></button>
                      <button className="button"><Link id='link' to="/signUp">SignUp</Link></button>
+                     <button className="button"><Link id='link' to="/routines">Public Routines</Link></button> 
+                     <button className="button"><Link id='link' to="/activities">Public Activities</Link></button>
                      </> : <>
                      <button className="button"> <Link id='link' to="/user">User</Link></button>  
-                     <button className="button"><Link id='link' to="/myRoutines">MyRoutines</Link></button> </>} </div>
+                     <button className="button"><Link id='link' to="/myRoutines">MyRoutines</Link></button> 
+                     <button className="button"><Link id='link' to="/myActivities">MyActivities</Link></button>
+                     <button className="button"><Link id='link' to="/routines">Public Routines</Link></button> 
+                     <button className="button"><Link id='link' to="/activities">Public Activities</Link></button></>} </div>
                 </div>
 
-                <div id="myProfile">
+                {/* <div id="myProfile"> */}
 
                    
                         <Route path="/login"><Login setLoggedIn={setLoggedIn}
@@ -63,28 +69,31 @@ const App = () => {
 
                         
                         <Route path="/user"><User loggedIn={loggedIn} setLoggedIn={setLoggedIn} username={username} setUsername={setUsername}/>
-                            <div>
-                                <Route path="/myRoutines"><MyRoutines/></Route>
+                            {/* <div>
+                                <Route path="/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic} routines = {routines} setRoutines = {setRoutines}/></Route>
                             </div>
+                            <div>
+                                <Route path="/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
+                            </div> */}
 
                         </Route> 
 
-                    </div>
+                    {/* </div> */}
 
 
-            <div className='link'>
+            {/* <div className='link'> */}
                
-             <Link id='routineLink' to = "/routines">Routines</Link>
+             {/* <Link id='routineLink' to = "/routines">Routines</Link> */}
              <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>  
 
-            <Link className='link' to = "/myRoutines">MyRoutines</Link>
+            {/* <Link className='link' to = "/myRoutines">MyRoutines</Link> */}
             <Route path = "/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic} routines = {routines} setRoutines = {setRoutines}/></Route>
 
-            <Link id='activitiesLink' to = "/activities">Activities</Link>
+            {/* <Link id='activitiesLink' to = "/activities">Activities</Link> */}
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
 
-        
-           </div>
+            <Route path="/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
+           {/* </div> */}
 
 
             </BrowserRouter>
