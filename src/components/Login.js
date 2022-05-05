@@ -4,11 +4,11 @@ import { login } from '../api/index';
 
 
 const Login = (props) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    // const [username, setUsername] = useState('');
+    // const [password, setPassword] = useState('');
 
     const [hasTriggeredError, setHasTriggeredError] = useState(false);
-    const {setLoggedIn, loggedIn} = props
+    const {setLoggedIn, loggedIn, username, setUsername, password, setPassword} = props;
 
     const handleSubmit = async (event) => {
         
@@ -26,6 +26,12 @@ const Login = (props) => {
        
     }
 
+    const logOut = () => {
+        localStorage.removeItem("UserToken");
+        setLoggedIn(false);
+
+    }
+
     const handleChange = (event) => setUsername(event.target.value);
     const handlePasswordChange = (event) => setPassword(event.target.value)
 
@@ -34,7 +40,7 @@ const Login = (props) => {
         <div id='Login-container'>
             {!loggedIn? <>
            { username.length === 0 ?
-                <div id='login-text'> Please sign in below: </div> :
+                <div id='login-text'> Please login below: </div> :
                 <div> Hello {username}, please enter in your information </div>}
             <form onSubmit={handleSubmit}>
                 <label htmlFor='username'>Username:</label>
@@ -46,7 +52,8 @@ const Login = (props) => {
                 }
                 <button id="submit" type='submit'>Submit</button>
             </form> </> :
-            <p>You are already signed in!</p>}
+            <><p>You are already signed in!</p><p>Not you?<button className="LogOut"
+            onClick={logOut}>Log out</button></p></>}
         </div>
     )
 }
