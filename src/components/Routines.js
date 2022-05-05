@@ -6,7 +6,7 @@
 //including their name, description, and duration and/or count
 
 import React, { useEffect, useState } from 'react';
-import  { getRoutines }  from '../api/index';
+import  { getRoutines }  from '../api';
 
 
 

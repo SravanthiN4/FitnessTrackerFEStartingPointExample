@@ -226,7 +226,7 @@ export const postRoutine = async (name, goal, isPublic) => {
 }
 
 
-export const patchRoutine = async (routineId, name, goal, isPublic) => {
+export const patchRoutine = async (routineId, newRoutine) => {
     const token = localStorage.getItem('UserToken');
     let response;
     try {
@@ -236,9 +236,10 @@ export const patchRoutine = async (routineId, name, goal, isPublic) => {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
-            body: JSON.stringify(
-                {name: name, goal: goal, isPublic: isPublic}
-            )
+            body: JSON.stringify({
+                routine:newRoutine
+            }
+        )
         })
         const patchedRoutine = await response.json()
         return patchedRoutine;
@@ -254,7 +255,7 @@ export const deleteRoutineByRoutineId = async (routineId) => {
     let response;
     try {
         if (token) {
-            response = await fetch(`${baseUrl}/routines${routineId}`, {
+            response = await fetch(`${baseUrl}/routines/${routineId}`, {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json',

@@ -7,9 +7,16 @@ import Activities from './Activities';
 import User from './User';
 import Login from './Login'
 import RegisterLogin from './RegisterLogin';
+import { getRoutines } from '../api';
+
 
 const App = () => {
  const [routines, setRoutines] = useState([]);
+
+ useEffect(async () => {
+    const allRoutines = await getRoutines();
+    setRoutines(allRoutines);
+ },[setRoutines])
  
  const [name, setName] = useState("");
  const [goal,setGoal] = useState("");
@@ -44,6 +51,8 @@ const App = () => {
                      <button className="button"><Link id='link' to="/signUp">SignUp</Link></button>
                      <button className="button"> <Link id='link' to="/user">User</Link></button>  
                      <button className="button"><Link id='link' to="/myRoutines">MyRoutines</Link></button>  
+                     
+                     
                     </div>
                 </div>
 
@@ -71,18 +80,18 @@ const App = () => {
 
             <div className='link'>
                
-             <Link id='routineLink' to = "/routines">Routines</Link>
+             {/* <Link id='routineLink' to = "/routines">Routines</Link> */}
              <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>  
 
-            <Link className='link' to = "/myRoutines">MyRoutines</Link>
+            {/* <Link className='link' to = "/myRoutines">MyRoutines</Link> */}
             <Route path = "/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic} routines = {routines} setRoutines = {setRoutines}/></Route>
 
-            <Link id='activitiesLink' to = "/activities">Activities</Link>
+            {/* <Link id='activitiesLink' to = "/activities">Activities</Link> */}
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
 
         
            
-
+    </div>
 
             </BrowserRouter>
 
