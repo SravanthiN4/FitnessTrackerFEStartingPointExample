@@ -1,15 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {getRoutines, postRoutine} from '../api';
+import UpdateForm from './UpdateForm';
 
 
 const MyRoutines = (props) => {
     const {routines, setRoutines} = props;
 
-    useEffect(async () => {
-        const data = await getRoutines();
-        setRoutines(data);
-        console.log("posts",data);
-    }, []);
+    
 
 
     const [name, setName] = useState("");
@@ -86,7 +83,8 @@ const MyRoutines = (props) => {
             <h2>Routine Goal: {
                 routine.goal
             }</h2>
-             <h2> isPublic : {routine.isPublic ? "true" : "false"}</h2>
+             
+             <UpdateForm routines = {routines} setRoutines = {setRoutines}/>
 
         </div>)
     } </div>);
