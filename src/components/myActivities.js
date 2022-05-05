@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import  { getAllActivities, postActivity }  from '../api/index';
-
-
+import  {  postActivity }  from '../api/index';
 
 const myActivities = (props) => {
     const {activities, setActivities} = props;
-
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
+    const {name, setName} = props;
+    const {description, setDescription} = props;
 
     const handlePostActivity = async () => {
         console.log("creating a new activity");
@@ -34,8 +31,6 @@ const myActivities = (props) => {
 
     return (
 
-    
-       
         <div className = "activitiesBox">
             <div className="postActivities">
                 Name: <input value={name} onChange={handleNameChange}/>

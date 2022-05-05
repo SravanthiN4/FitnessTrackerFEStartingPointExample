@@ -22,12 +22,8 @@ const App = () => {
  const [name, setName] = useState("");
  const [goal,setGoal] = useState("");
  const [isPublic,setIsPublic] = useState(false);
- 
-
-
-
-
-    const [loggedIn, setLoggedIn] = useState(false);
+ const [description, setDescription] = useState("");
+ const [loggedIn, setLoggedIn] = useState(false);
 
 
     useEffect(() => {
@@ -75,14 +71,12 @@ const App = () => {
                             </div>
 
                             <div>
-                            <Route path="/myActivities"><myActivities/></Route>
+                            <Route path="/myActivities" loggedIn={loggedIn}><myActivities/></Route>
                                 <button className="LogOut"
                                     onClick={logOut}>Log out</button> 
                             </div>
 
                         </Route>
-
-    
 
                     </div>
 
@@ -99,11 +93,9 @@ const App = () => {
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
 
             <Link id='myActivitiesLink' to ='myActivities'>My Activities</Link>
-            <Route path = '/myActivities' ></Route>
+            <Route path = '/myActivities'><myActivities name={name} setName={setName} description={description} setDescription={setDescription}/></Route>
              </div>
            
-
-
             </BrowserRouter>
 
 
