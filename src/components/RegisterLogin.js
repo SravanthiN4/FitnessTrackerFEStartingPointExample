@@ -37,7 +37,9 @@ const RegisterLogin = (props) => {
 
     
 
-    return (<div id='SignUp-container'>
+    return (
+    
+    <div id='SignUp-container'>
             {!loggedIn? <>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='username'>Create Username:</label>

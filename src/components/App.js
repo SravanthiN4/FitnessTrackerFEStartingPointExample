@@ -4,18 +4,26 @@ import Home from './Home';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
+import myActivities from './myActivities';
 import User from './User';
 import Login from './Login'
 import RegisterLogin from './RegisterLogin';
+import { getAllActivities } from '../api';
 
 const App = () => {
  const [routines, setRoutines] = useState([]);
- 
+ const [activities, setActivities] = useState([]);
+
+//  userEffect(()=> {
+//      allActivities = await getAllActivities;
+     
+//  })
+
  const [name, setName] = useState("");
  const [goal,setGoal] = useState("");
  const [isPublic,setIsPublic] = useState(false);
  
- const [activities, setActivities] = useState([]);
+
 
 
 
@@ -42,8 +50,10 @@ const App = () => {
                     <div id= "buttonRoutesBox">
                      <button className="button"><Link id='link' to="/login">Login</Link></button>
                      <button className="button"><Link id='link' to="/signUp">SignUp</Link></button>
-                     <button className="button"> <Link id='link' to="/user">User</Link></button>  
+                     <button className="button"><Link id='link' to="/user">User</Link></button>  
                      <button className="button"><Link id='link' to="/myRoutines">MyRoutines</Link></button>  
+                     <button className="button"><Link id='link' to="/myActivities">MyActivities</Link></button>  
+
                     </div>
                 </div>
 
@@ -64,7 +74,15 @@ const App = () => {
                                     onClick={logOut}>Log out</button>
                             </div>
 
+                            <div>
+                            <Route path="/myActivities"><myActivities/></Route>
+                                <button className="LogOut"
+                                    onClick={logOut}>Log out</button> 
+                            </div>
+
                         </Route>
+
+    
 
                     </div>
 
@@ -80,7 +98,9 @@ const App = () => {
             <Link id='activitiesLink' to = "/activities">Activities</Link>
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
 
-        
+            <Link id='myActivitiesLink' to ='myActivities'>My Activities</Link>
+            <Route path = '/myActivities' ></Route>
+             </div>
            
 
 
