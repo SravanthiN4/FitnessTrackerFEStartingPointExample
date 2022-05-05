@@ -87,19 +87,14 @@ const App = () => {
                     {/* </div> */}
 
 
-            {/* <div className='link'> */}
                
-             {/* <Link id='routineLink' to = "/routines">Routines</Link> */}
              <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>  
 
-            {/* <Link className='link' to = "/myRoutines">MyRoutines</Link> */}
             <Route path = "/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic} routines = {routines} setRoutines = {setRoutines}/></Route>
 
-            {/* <Link id='activitiesLink' to = "/activities">Activities</Link> */}
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
 
             <Route path="/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
-           {/* </div> */}
 
 
             </BrowserRouter>
