@@ -13,17 +13,15 @@ import { getRoutines } from '../api';
 
 const App = () => {
  const [routines, setRoutines] = useState([]);
+ const [activities, setActivities] = useState([]);
 
  useEffect(async () => {
     const allRoutines = await getRoutines();
     setRoutines(allRoutines);
  },[setRoutines])
  
- const [name, setName] = useState("");
- const [goal,setGoal] = useState("");
- const [isPublic,setIsPublic] = useState(false);
  
- const [activities, setActivities] = useState([]);
+ 
  const [username, setUsername] = useState('');
  const [password, setPassword] = useState('');
 
@@ -76,12 +74,6 @@ const App = () => {
 
                         
                         <Route path="/user"><User loggedIn={loggedIn} setLoggedIn={setLoggedIn} username={username} setUsername={setUsername}/>
-                            {/* <div>
-                                <Route path="/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic} routines = {routines} setRoutines = {setRoutines}/></Route>
-                            </div>
-                            <div>
-                                <Route path="/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
-                            </div> */}
 
                         </Route> 
 
@@ -94,7 +86,7 @@ const App = () => {
              <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>  
 
             {/* <Link className='link' to = "/myRoutines">MyRoutines</Link> */}
-            <Route path = "/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic} routines = {routines} setRoutines = {setRoutines}/></Route>
+            <Route path = "/myRoutines"><MyRoutines  routines = {routines} setRoutines = {setRoutines}/></Route>
 
             {/* <Link id='activitiesLink' to = "/activities">Activities</Link> */}
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
