@@ -4,7 +4,7 @@ import { getRoutines, patchRoutine } from '../api';
 import { deleteRoutineByRoutineId } from '../api';
 
 
-const UpdateForm = (props) => {
+const DeleteForm = (props) => {
     
     const {routines, setRoutines} = props;
     const [name, setName] = useState("");
@@ -35,4 +35,4 @@ const UpdateForm = (props) => {
     );
 }
 
-export default UpdateForm;
+export default DeleteForm;

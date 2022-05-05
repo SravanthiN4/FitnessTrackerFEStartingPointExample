@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {getRoutines, postRoutine} from '../api';
-import UpdateForm from './UpdateForm';
+import DeleteForm from './DeleteForm';
 
 
 const MyRoutines = (props) => {
@@ -84,7 +84,7 @@ const MyRoutines = (props) => {
                 routine.goal
             }</h2>
              
-             <UpdateForm routines = {routines} setRoutines = {setRoutines}/>
+             <DeleteForm routines = {routines} setRoutines = {setRoutines}/>
 
         </div>)
     } </div>);
