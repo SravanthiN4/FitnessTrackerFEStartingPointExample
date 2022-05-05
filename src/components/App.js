@@ -16,7 +16,8 @@ const App = () => {
  const [isPublic,setIsPublic] = useState(false);
  
  const [activities, setActivities] = useState([]);
-
+ const [username, setUsername] = useState('');
+ const [password, setPassword] = useState('');
 
 
     const [loggedIn, setLoggedIn] = useState(false);
@@ -40,31 +41,33 @@ const App = () => {
                 <div id="header">
                 <h1 className='header'>Fitness Tracker</h1>
                     <div id= "buttonRoutesBox">
+                    {!loggedIn? <>
                      <button className="button"><Link id='link' to="/login">Login</Link></button>
                      <button className="button"><Link id='link' to="/signUp">SignUp</Link></button>
+                     </> : <>
                      <button className="button"> <Link id='link' to="/user">User</Link></button>  
-                     <button className="button"><Link id='link' to="/myRoutines">MyRoutines</Link></button>  
-                    </div>
+                     <button className="button"><Link id='link' to="/myRoutines">MyRoutines</Link></button> </>} </div>
                 </div>
 
                 <div id="myProfile">
+
+                   
                         <Route path="/login"><Login setLoggedIn={setLoggedIn}
-                                loggedIn={loggedIn}/>Login
+                                loggedIn={loggedIn} username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>
+                                
                         </Route>
 
-                        <Route path="/signUp"
-                            setLoggedIn={setLoggedIn}
-                            loggedIn={loggedIn}><RegisterLogin/>Sign Up
+                        <Route path="/signUp"><RegisterLogin setLoggedIn={setLoggedIn}
+                            loggedIn={loggedIn} username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>
                         </Route>
 
-                        <Route path="/user" loggedIn={loggedIn}><User/>
+                        
+                        <Route path="/user"><User loggedIn={loggedIn} setLoggedIn={setLoggedIn} username={username} setUsername={setUsername}/>
                             <div>
                                 <Route path="/myRoutines"><MyRoutines/></Route>
-                                <button className="LogOut"
-                                    onClick={logOut}>Log out</button>
                             </div>
 
-                        </Route>
+                        </Route> 
 
                     </div>
 
@@ -81,7 +84,7 @@ const App = () => {
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
 
         
-           
+           </div>
 
 
             </BrowserRouter>
