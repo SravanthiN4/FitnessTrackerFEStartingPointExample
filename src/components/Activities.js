@@ -6,9 +6,6 @@ import  { getAllActivities, postActivity }  from '../api/index';
 const Activities = (props) => {
     const {activities, setActivities} = props;
 
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-
     useEffect(() => {
         (async () => {
             const activities = await getAllActivities();
@@ -17,25 +14,17 @@ const Activities = (props) => {
         })();
     }, []);
 
-
-
     return (
 
-    
-       
-        <div className = "activitiesBox">
-
+        <div className = "contentBox">
            {
                activities.map(activity => 
-                    <div className='activities' key = {activity.id}>
+                    <div className='content' key = {activity.id}>
                         <h2> Activity Name : {activity.name}</h2>
                         <h2>Activity Description: {activity.description}</h2>
-
                  </div>)
-
            }
         </div>
-       
     );
 };
 

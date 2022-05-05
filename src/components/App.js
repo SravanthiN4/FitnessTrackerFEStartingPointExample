@@ -4,7 +4,7 @@ import Home from './Home';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
-import MyActivities from './MyActivities';
+import MyActivities from './myActivities';
 import User from './User';
 import Login from './Login'
 import RegisterLogin from './RegisterLogin';

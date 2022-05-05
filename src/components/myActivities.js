@@ -34,7 +34,7 @@ const MyActivities = (props) => {
     }
 
 
-    return (<div className="activitiesBox">
+    return (<div className="contentBox">
         <div className="postActivities">
             Name:
             <input value={name}

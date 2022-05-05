@@ -42,21 +42,30 @@ const MyRoutines = (props) => {
       
 
     return (
-       
-        <div className='postRoutine'>
+       <div className='contentBox'>
+        <div className="boxForContent">
+
                Name: <input value={name} onChange={handleNameChange} />
                 Goal :<input value={goal} onChange={handleGoalChange} />
                 isPublic : <input value={isPublic} onChange={handleIsPublic} />
-               Submit: <button onClick={handlePostButtonClick}>
+              Submit: <button className="submitButton"onClick={handlePostButtonClick}>
                 Make New Routine Request!
                 </button>
+               
+
 
                 {routines.map (routine => 
-                    <div key = {routine.id}>
+                  <div key = {routine.id}>
+                  <div className='content'>
+                    <div>
                     <p>Name : {routine.name}</p>
                     <p>Goal : {routine.goal}</p>
                     <p>isPublic : {routine.isPublic ? "true": "false"}</p>
-                    </div>)}
+                    </div>
+                  </div>
+                  </div>)}
+ 
+        </div>
         </div>
 
 
