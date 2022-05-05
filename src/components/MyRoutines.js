@@ -5,13 +5,21 @@ import {getRoutines, postRoutine} from '../api';
 const MyRoutines = (props) => {
     const {routines, setRoutines} = props;
 
+    useEffect(async () => {
+        const data = await getRoutines();
+        setRoutines(data);
+        console.log("posts",data);
+    }, []);
+
+
     const [name, setName] = useState("");
     const [goal, setGoal] = useState("");
     const [isPublic, setIsPublic] = useState(false);
+    console.log("publicfirst",isPublic);
 
     const handleRoutine = async () => {
         console.log("creating a new routine");
-        
+
 
         const routineData = await postRoutine(name,goal,isPublic)
         console.log("routineData", routineData)
@@ -36,11 +44,15 @@ const MyRoutines = (props) => {
         setGoal(event.target.value);
     }
 
-    const handleIsPublic = (event) => {
-        setIsPublic(event.target.value);
+    const handleIsPublic = () => {
+        setIsPublic(!isPublic)
     }
 
-    return (<div className="activitiesBox">
+    console.log("publisec",isPublic);
+    console.log("routines",routines);
+
+    return (
+        <div className="activitiesBox">
         <div className="postActivities">
             Name:
             <input value={name}
@@ -48,13 +60,18 @@ const MyRoutines = (props) => {
             Goal :
             <input value={goal}
                 onChange={handleGoalChange}/>
-           isPublic:
-           <input type = 'checkbox' value={isPublic}
-                onChange={handleIsPublic}/>
-            <button type = 'submit' onClick={handleRoutine}>
+            Public :
+            <input type="checkbox"
+            name="isPublic"
+            value={isPublic} 
+            onChange={handleIsPublic} />
+    
+            <button onClick={handleRoutine}>
                 Submit New Routine
             </button>
         </div>
+        
+
 
         {
         routines.map(routine => <div className='activities'
@@ -62,19 +79,22 @@ const MyRoutines = (props) => {
                 routine.id
         }>
             <h2>
+               
                 Routine Name : {
                 routine.name
             }</h2>
             <h2>Routine Goal: {
                 routine.goal
             }</h2>
-
-             <h2>Routine Public: {
-                routine.isPublic
-            }</h2>
+             <h2> isPublic : {routine.isPublic ? "true" : "false"}</h2>
 
         </div>)
     } </div>);
-};
+
+
+}
+     
+     
+
 
 export default MyRoutines;

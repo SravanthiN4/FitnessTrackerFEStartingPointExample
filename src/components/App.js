@@ -15,10 +15,10 @@ const App = () => {
  const [routines, setRoutines] = useState([]);
  const [activities, setActivities] = useState([]);
 
- useEffect(async () => {
-    const allRoutines = await getRoutines();
-    setRoutines(allRoutines);
- },[setRoutines])
+//  useEffect(async () => {
+//     const allRoutines = await getRoutines();
+//     setRoutines(allRoutines);
+//  },[setRoutines])
  
  
  
