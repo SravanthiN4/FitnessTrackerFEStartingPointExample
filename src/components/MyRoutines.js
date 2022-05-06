@@ -1,19 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import {getRoutines, postRoutine} from '../api';
-import DeleteForm from './DeleteForm';
+import { deleteRoutineByRoutineId, postRoutine } from '../api';
 import UpdateForms from './UpdateForm';
 
 
+
+
 const MyRoutines = (props) => {
+
     const {routines, setRoutines} = props;
-
-    
-
-
     const [name, setName] = useState("");
     const [goal, setGoal] = useState("");
     const [isPublic, setIsPublic] = useState(false);
+    const [editOpen, setEditOpen] = useState(false)
     console.log("publicfirst",isPublic);
+
+    const handleDelete = async (routineId, event) => {
+        event.preventDefault();
+        await deleteRoutineByRoutineId(routineId);
+        const remainingRoutines = routines.filter((routine) => routineId !== routine.id);
+        setRoutines(remainingRoutines);
+    }
 
     const handleRoutine = async () => {
         console.log("creating a new routine");
@@ -84,9 +90,9 @@ const MyRoutines = (props) => {
             <h2>Routine Goal: {
                 routine.goal
             }</h2>
-             
-             <DeleteForm routines = {routines} setRoutines = {setRoutines}/>
-             {/* <UpdateForms routines = {routines} setRoutines = {setRoutines}/> */}
+              {<button key={routine.id} onClick={() => {setEditOpen({open:!editOpen, id: routine.id})}} editOpen={editOpen}>Edit</button>}
+                    {editOpen.open && editOpen.id === routine.id ? <UpdateForms routineId={routine.id}/> : null}
+             {<button onClick = {(event)=> {handleDelete(routine.id, event)}}>Delete</button>}
         </div>)
     } </div>);
 

@@ -7,53 +7,59 @@ const UpdateForms =  (props) => {
 
     const [name, setName] = useState('');
     const [goal, setGoal] = useState('');
-    const { routines, setRoutines} = props
+    const [isPublic, setIsPublic] = useState(false);
+    const {loggedIn, routines, setRoutines} = props;
 
     const [hasTriggeredError, setHasTriggeredError] = useState(false);
-   
-
-    const handleUpdateRoutine = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
             
         
         const newRoutine = {
                 name: name,
                 goal: goal,
-                isPublic: isPublic
-            }
+                isPublic: isPublic,
+            
+        }
+
+
 
         const sendRoutine = await patchRoutine(newRoutine);
+
         setRoutines(sendRoutine);
 
-        const found = routines.find(routine => routine.id === id);
-        setRoutines([...routines, sendRoutine, found]);
+        setName('');
+            setGoal('');
+            setIsPublic(false);
     }
 
     
     const handleName = (event) => setName(event.target.value);
-    const handleGoal = (event) => setGoal(event.target.value);
-    
+    const handleGoal = (event) => setGoal(event.target.value)
+    const handlePublic = (event) => setIsPublic(event.target.value)
+
     if (hasTriggeredError) return <p style={{ color: 'red' }}> Whoopse, looks like you need to fix something! </p>
 
+    return (
+        <div>
+            {!loggedIn ? 
+            <>
+            <form onSubmit={handleSubmit}>
+            <label htmlFor='title'>Name</label>
+            <input type='text' name='Name' value={name} onChange={handleName} />
+            <label htmlFor='goal'>Goal</label>
+            <input type='text' name='goal' value={goal} onChange={handleGoal} />
+            <label htmlFor='isPublic'> Is Public ?  </label>
+            <input type='checkbox' name='isPublic' value={isPublic} onChange={handlePublic} />
+                
+                <button type='submit'>Submit</button>
+            </form> </> :  
+            null}
+        </div>
+    )
 
-
-return (
-        
-    <div>
-        {routines && routines.map(routine => <div key={routine.id}>
-                <h2>{routine.name}</h2>
-                <p>{routine.goal}</p>
-                <div>
-                <label>New Name</label>
-                <input onChange={handleName}></input>
-                <label>New Goal</label>
-                <input onChange={handleGoal}></input>
-            
-                <button onClick={() => handleUpdateRoutine(routine.id)}>Update Routine</button>
-                </div>
-            </div>)}
-      </div>
-);
 }
+
+
 
 export default UpdateForms

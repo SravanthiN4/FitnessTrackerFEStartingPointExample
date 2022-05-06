@@ -25,7 +25,7 @@ const Routines = (props) => {
        
         <div>
            {
-               routines.map(routine => 
+               routines && routines.map(routine => 
                     <div className='routine' key = {routine.id}>
                         <h2>Routine Name : {routine.name}</h2>
                         <h2>Routine Goal : {routine.goal}</h2>

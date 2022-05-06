@@ -241,7 +241,7 @@ export const patchRoutine = async (routineId, newRoutine) => {
             }
         )
         })
-        const patchedRoutine = await response.json()
+        const patchedRoutine = await response.json();
         return patchedRoutine;
     } catch (error) {
         console.log("error in patchRoutine!")
