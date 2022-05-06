@@ -10,25 +10,26 @@ const UpdateForms =  (props) => {
     const {loggedIn, routines, setRoutines} = props;
 
     const [hasTriggeredError, setHasTriggeredError] = useState(false);
+    console.log("routines",routines);
    
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event,id) => {
         event.preventDefault();
-            
-        
+    
         const newRoutine = {
-                id:id,
                 name: name,
                 goal: goal,
                 isPublic: isPublic
             
         }
-        const sendRoutine = await patchRoutine(newRoutine);
-        console.log(sendRoutine);
-        setRoutines(sendRoutine);
+        const sendRoutine = await patchRoutine(newRoutine,id);
+        // console.log(sendRoutine);
+        // setRoutines(sendRoutine);
 
-        setName('');
-        setGoal('');
-            
+        const found = routines.find(routine => routine.id === id);
+        console.log(found);
+        setRoutines([...routines, sendRoutine, found]);
+
+      
     }
 
     
@@ -50,7 +51,7 @@ const UpdateForms =  (props) => {
             <label htmlFor='goal'>Public</label>
             <input type='checkbox' name='isPublic' value={isPublic} onChange={handlePublic} />
                 
-                <button id="summit" type='submit'>Submit</button>
+                <button type='submit'>Submit</button>
             </form> </> :  
             null}
         </div>

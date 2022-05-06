@@ -229,6 +229,7 @@ export const postRoutine = async (name, goal, isPublic) => {
 
 
 export const patchRoutine = async (newRoutine,id) => {
+   
     const token = localStorage.getItem('UserToken');
     let response;
     try {
@@ -238,9 +239,7 @@ export const patchRoutine = async (newRoutine,id) => {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
-            body: JSON.stringify({
-                routine: newRoutine
-              })
+            body: JSON.stringify(newRoutine)
         
         });
         const patchedRoutine = await response.json();

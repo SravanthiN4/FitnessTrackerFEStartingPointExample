@@ -2,9 +2,6 @@ import React, {useEffect, useState} from 'react';
 import { deleteRoutineByRoutineId, postRoutine } from '../api';
 import UpdateForms from './UpdateForm';
 
-
-
-
 const MyRoutines = (props) => {
 
     const {routines, setRoutines} = props;
