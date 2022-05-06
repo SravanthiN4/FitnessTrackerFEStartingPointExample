@@ -53,8 +53,9 @@ const MyRoutines = (props) => {
     }
 
     return (
-        <div className="activitiesBox">
-        <div className="postActivities">
+        
+        <div className='contentBox'>
+        <div className="boxForContent">
             Name:
             <input value={name}
                 onChange={handleNameChange}/>
@@ -70,11 +71,8 @@ const MyRoutines = (props) => {
             <button onClick={handleRoutine}>
                 Submit New Routine
             </button>
-        </div>
-        
-
-
-        {
+            </div>
+       {
         routines.map(routine => <div className='activities'
             key={
                 routine.id
@@ -97,8 +95,5 @@ const MyRoutines = (props) => {
 
 
 }
-     
-     
-
 
 export default MyRoutines;

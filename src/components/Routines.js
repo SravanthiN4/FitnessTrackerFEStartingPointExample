@@ -22,11 +22,11 @@ const Routines = (props) => {
         })();
     }, []);
     return (
-       
-        <div>
+       <div className='contentBox'>
+        <div className="boxForContent">
            {
-               routines && routines.map(routine => 
-                    <div className='routine' key = {routine.id}>
+               routines.map(routine => 
+                    <div className='content' key = {routine.id}>
                         <h2>Routine Name : {routine.name}</h2>
                         <h2>Routine Goal : {routine.goal}</h2>
                         <h2>Routine Creator : {routine.creatorName}</h2>
@@ -50,6 +50,7 @@ const Routines = (props) => {
                  </div>
                 )
            }
+        </div>
         </div>
        
     );

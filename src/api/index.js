@@ -12,9 +12,10 @@ export const registerUser = async (userObject) => {
     })
     const json = await response.json();
 
-    if (json === null) {
+    if (!json.user) {
         return false;
-    } else {
+    } 
+     else {
         console.log("json data in register", json)
         localStorage.setItem('UserToken', json.token);
         return true;
@@ -36,8 +37,9 @@ export const login = async (userObject) => {
         body: JSON.stringify(userObject)
     })
     const json = await response.json();
+    console.log("this is json in login",json)
 
-    if (json === null) {
+    if (!json.user) {
         return false;
     } else {
         localStorage.setItem('UserToken', json.token);
