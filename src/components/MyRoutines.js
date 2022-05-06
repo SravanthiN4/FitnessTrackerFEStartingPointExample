@@ -52,9 +52,6 @@ const MyRoutines = (props) => {
         setIsPublic(!isPublic)
     }
 
-    console.log("publisec",isPublic);
-    console.log("routines",routines);
-
     return (
         <div className="activitiesBox">
         <div className="postActivities">
@@ -90,8 +87,10 @@ const MyRoutines = (props) => {
             <h2>Routine Goal: {
                 routine.goal
             }</h2>
-              {<button key={routine.id} onClick={() => {setEditOpen({open:!editOpen, id: routine.id})}} editOpen={editOpen}>Edit</button>}
-                    {editOpen.open && editOpen.id === routine.id ? <UpdateForms routineId={routine.id}/> : null}
+            
+            {<button key={routine.id} onClick={() => {setEditOpen({open:!editOpen, id: routine.id})}} editOpen={editOpen}>Edit</button>}
+            {editOpen.open && editOpen.id === routine.id ? <UpdateForms id={routine.id}/> : null}
+
              {<button onClick = {(event)=> {handleDelete(routine.id, event)}}>Delete</button>}
         </div>)
     } </div>);

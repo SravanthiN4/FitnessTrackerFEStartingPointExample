@@ -11,18 +11,18 @@ const UpdateForms =  (props) => {
 
     const [hasTriggeredError, setHasTriggeredError] = useState(false);
    
-
-    const handleSubmit = async (id) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
             
         
         const newRoutine = {
+                id:id,
                 name: name,
                 goal: goal,
                 isPublic: isPublic
             
         }
-        const sendRoutine = await patchRoutine(newRoutine,id);
+        const sendRoutine = await patchRoutine(newRoutine);
         console.log(sendRoutine);
         setRoutines(sendRoutine);
 
