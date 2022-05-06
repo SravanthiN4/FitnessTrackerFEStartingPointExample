@@ -35,6 +35,8 @@ const MyActivities = (props) => {
 
 
     return (<div className="contentBox">
+
+        <div className="boxForContent">
         <div className="postActivities">
             Name:
             <input value={name}
@@ -48,20 +50,14 @@ const MyActivities = (props) => {
         </div>
 
         {
-        activities.map(activity => <div className='activities'
-            key={
-                activity.id
-        }>
-            <h2>
-                Activity Name : {
-                activity.name
-            }</h2>
-            <h2>Activity Description: {
-                activity.description
-            }</h2>
-
+        activities.map(activity => 
+        <div className='content'
+            key={activity.id}>
+            <h2>Activity Name : {activity.name}</h2>
+            <h2>Activity Description: {activity.description}</h2>
         </div>)
-    } </div>);
+    }</div> 
+    </div>);
 };
 
 export default MyActivities;

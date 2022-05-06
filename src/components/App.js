@@ -42,7 +42,7 @@ const App = () => {
     }
 
     return (<div className='app'>
-        
+
         
             <BrowserRouter>
                 <div id="header">
@@ -60,7 +60,7 @@ const App = () => {
                      <button className="button"><Link id='link' to="/routines">Public Routines</Link></button> 
                      <button className="button"><Link id='link' to="/activities">Public Activities</Link></button></>} </div>
                 </div>
-
+ 
                 {/* <div id="myProfile"> */}
 
                    
