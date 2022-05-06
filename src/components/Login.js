@@ -37,10 +37,13 @@ const Login = (props) => {
 
     if (hasTriggeredError) return <p style={{ color: 'red' }}> Whoopse, looks like you need to fix something! </p>
     return (
-        <div id='Login-container'>
-            {!loggedIn? <>
+
+        <div>
+            {!loggedIn? 
+            <div className="login">
            { username.length === 0 ?
                 <div id='login-text'> Please login below: </div> :
+                
                 <div> Hello {username}, please enter in your information </div>}
             <form onSubmit={handleSubmit}>
                 <label htmlFor='username'>Username:</label>
@@ -48,16 +51,14 @@ const Login = (props) => {
                 <label htmlFor='password'>Password:</label>
                 <input type='password' name='password' value={password} onChange={handlePasswordChange} />
                 {hasTriggeredError &&
-                    <p style={{ color: 'red' }}> Whoopse, looks like you need to fix something! </p>
+                <p style={{ color: 'red' }}> Whoopse, looks like you need to fix something! </p>
                 }
-                <button id="submit" type='submit'>Submit</button>
-            </form> </> :
+                <button className="submit" type='submit'>Submit</button>
+            </form> 
+        </div> :
             <><p>You are already signed in!</p><p>Not you?<button className="LogOut"
             onClick={logOut}>Log out</button></p></>}
         </div>
     )
 }
-
-
-
  export default Login;
