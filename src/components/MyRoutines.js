@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {getRoutines, postRoutine} from '../api';
 import DeleteForm from './DeleteForm';
+import UpdateForms from './UpdateForm';
 
 
 const MyRoutines = (props) => {
@@ -85,7 +86,7 @@ const MyRoutines = (props) => {
             }</h2>
              
              <DeleteForm routines = {routines} setRoutines = {setRoutines}/>
-
+             {/* <UpdateForms routines = {routines} setRoutines = {setRoutines}/> */}
         </div>)
     } </div>);
 
