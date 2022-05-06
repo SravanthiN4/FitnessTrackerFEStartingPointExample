@@ -7,7 +7,8 @@ const UpdateForms =  (props) => {
     const [name, setName] = useState('');
     const [goal, setGoal] = useState('');
     const [isPublic, setIsPublic] = useState('');
-    const {loggedIn, routines, setRoutines} = props;
+    const {routines, setRoutines} = props;
+    const {loggedIn} = props;
 
     const [hasTriggeredError, setHasTriggeredError] = useState(false);
     console.log("routines",routines);
@@ -22,8 +23,7 @@ const UpdateForms =  (props) => {
             
         }
         const sendRoutine = await patchRoutine(newRoutine,id);
-        // console.log(sendRoutine);
-        // setRoutines(sendRoutine);
+        console.log("afterupdate",routines);
 
         const found = routines.find(routine => routine.id === id);
         console.log(found);

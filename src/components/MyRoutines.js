@@ -14,6 +14,7 @@ const MyRoutines = (props) => {
     const handleDelete = async (routineId, event) => {
         event.preventDefault();
         await deleteRoutineByRoutineId(routineId);
+        console.log("in delete",routines);
         const remainingRoutines = routines.filter((routine) => routineId !== routine.id);
         setRoutines(remainingRoutines);
     }
