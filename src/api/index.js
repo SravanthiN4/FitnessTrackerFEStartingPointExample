@@ -226,22 +226,23 @@ export const postRoutine = async (name, goal, isPublic) => {
 }
 
 
-export const patchRoutine = async (routineId, newRoutine) => {
+export const patchRoutine = async (newRoutine,id) => {
     const token = localStorage.getItem('UserToken');
     let response;
     try {
-        response = await fetch(`${baseUrl}/routines/${routineId}`, {
+        response = await fetch(`${baseUrl}/routines/${id}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify({
-                routine:newRoutine
-            }
-        )
-        })
+                routine: newRoutine
+              })
+        
+        });
         const patchedRoutine = await response.json();
+        console.log("api",patchedRoutine);
         return patchedRoutine;
     } catch (error) {
         console.log("error in patchRoutine!")

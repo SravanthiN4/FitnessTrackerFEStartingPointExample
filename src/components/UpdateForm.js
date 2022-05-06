@@ -2,35 +2,33 @@ import React, {useState} from "react";
 import { patchRoutine } from "../api";
 
 
-
 const UpdateForms =  (props) => {
 
     const [name, setName] = useState('');
     const [goal, setGoal] = useState('');
-    const [isPublic, setIsPublic] = useState(false);
+    const [isPublic, setIsPublic] = useState('');
     const {loggedIn, routines, setRoutines} = props;
 
     const [hasTriggeredError, setHasTriggeredError] = useState(false);
-    const handleSubmit = async (event) => {
+   
+
+    const handleSubmit = async (id) => {
         event.preventDefault();
             
         
         const newRoutine = {
                 name: name,
                 goal: goal,
-                isPublic: isPublic,
+                isPublic: isPublic
             
         }
-
-
-
-        const sendRoutine = await patchRoutine(newRoutine);
-
+        const sendRoutine = await patchRoutine(newRoutine,id);
+        console.log(sendRoutine);
         setRoutines(sendRoutine);
 
         setName('');
-            setGoal('');
-            setIsPublic(false);
+        setGoal('');
+            
     }
 
     
@@ -45,14 +43,14 @@ const UpdateForms =  (props) => {
             {!loggedIn ? 
             <>
             <form onSubmit={handleSubmit}>
-            <label htmlFor='title'>Name</label>
+            <label htmlFor='name'>Name</label>
             <input type='text' name='Name' value={name} onChange={handleName} />
             <label htmlFor='goal'>Goal</label>
             <input type='text' name='goal' value={goal} onChange={handleGoal} />
-            <label htmlFor='isPublic'> Is Public ?  </label>
+            <label htmlFor='goal'>Public</label>
             <input type='checkbox' name='isPublic' value={isPublic} onChange={handlePublic} />
                 
-                <button type='submit'>Submit</button>
+                <button id="summit" type='submit'>Submit</button>
             </form> </> :  
             null}
         </div>
