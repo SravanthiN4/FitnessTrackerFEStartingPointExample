@@ -18,6 +18,7 @@ const Activities = (props) => {
 
         <div className = "contentBox">
             <div className="boxForContent">
+            <h1>Take a look at all of our activities!</h1>
            {
                activities.map(activity => 
                     <div className='content' key = {activity.id}>

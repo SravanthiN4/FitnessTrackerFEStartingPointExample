@@ -68,7 +68,7 @@ return (<div className='app'>
             <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>  
             <Route path = "/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic} routines = {routines} setRoutines = {setRoutines}/></Route>
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
-            <Route path="/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
+            <Route path = "/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
 
             </BrowserRouter>
         </div>);
