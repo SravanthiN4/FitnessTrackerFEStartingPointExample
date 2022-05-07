@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {getAllActivities, postActivity} from '../api/index';
 
 
-const myActivities = (props) => {
+const MyActivities = (props) => {
     const {activities, setActivities} = props;
 
     const [name, setName] = useState("");
@@ -64,4 +64,4 @@ const myActivities = (props) => {
     } </div>);
 };
 
-export default myActivities;
+export default MyActivities;

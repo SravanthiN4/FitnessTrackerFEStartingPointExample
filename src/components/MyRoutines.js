@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { deleteRoutineByRoutineId, postRoutine } from '../api';
+import AddActivitiesToRoutines from './AddActivitiyToRoutine';
+
 import UpdateForms from './UpdateForm';
 
 const MyRoutines = (props) => {
@@ -88,6 +90,11 @@ const MyRoutines = (props) => {
             {editOpen.open && editOpen.id === routine.id ? <UpdateForms id={routine.id}/> : null}
 
              {<button onClick = {(event)=> {handleDelete(routine.id, event)}}>Delete</button>}
+
+             {<button key={routine.id} onClick={() => {setEditOpen({open:!editOpen, id: routine.id})}} editOpen={editOpen}>Add</button>}
+            {editOpen.open && editOpen.id === routine.id ? <AddActivitiesToRoutines id={routine.id}/> : null}
+            
+             
         </div>)
     } </div>);
 

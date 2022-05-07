@@ -1,100 +1,78 @@
-import React, {useEffect, useState} from 'react';
-import { postActivityToRoutine } from '../api';
+import React, {useState} from 'react';
+import {postActivityToRoutine } from '../api';
 
 
 
+const AddActivitiesToRoutines = (props) => {
 
-
-const addActivityToRoutine = (props) => {
-
-    const {routines, setRoutines} = props;
+   // const {routines, setRoutines} = props;
     const [count, setCount] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [activityId, setActivityId] = useState(0);
-    
+    const {activities, setActivities} = props;
 
-    
-    const handleAddActivityToRoutine = async () => {
-        console.log("creating a new activity to routine");
+   
+ const handleRoutine = async () => {
+        console.log("creating a new activity");
 
 
-        const routineData = await postActivityToRoutine(count,duration)
-        console.log("routineData", routineData)
+        const routineActivityData = await postActivityToRoutine(routineId, activityId, count, duration)
+        console.log("routineData", routineActivityData)
 
-        const newRoutineList = [
-            routineData,
-            ...routines
+
+        const newActivityRoutineList = [
+            routineActivityData,
+            ...activities
         ]
-        console.log("newRoutineList", newRoutineList)
-        setRoutines(newRoutineList);
+        console.log("newActivityRoutineList", newActivityRoutineList)
+        setActivities(newActivityRoutineList);
 
-        setName("");
-        setGoal("");
-        setIsPublic(false);
+        setCount(0);
+        setDuration(0);
+       
     }
 
-    const handleNameChange = (event) => {
-        setName(event.target.value);
+    const handleCountChange = (event) => {
+        setCount(event.target.value);
     }
 
-    const handleGoalChange = (event) => {
-        setGoal(event.target.value);
+    const handleDurationChange = (event) => {
+        setDuration(event.target.value);
     }
-
-    const handleIsPublic = () => {
-        setIsPublic(!isPublic)
-    }
-
-    
-
 
     return (
-        <div className="activitiesBox">
-        <div className="postActivities">
+        
+        <div className='contentBox'>
+        <div className="boxForContent">
             Name:
-            <input value={name}
-                onChange={handleNameChange}/>
+            <input value={count}
+                onChange={handleCountChange}/>
             Goal :
-            <input value={goal}
-                onChange={handleGoalChange}/>
-            Public :
-            <input type="checkbox"
-            name="isPublic"
-            value={isPublic} 
-            onChange={handleIsPublic} />
+            <input value={duration}
+                onChange={handleDurationChange}/>
     
             <button onClick={handleRoutine}>
-                Submit New Routine
+                Submit New Routine with Activity
             </button>
-        </div>
-        
-
-
-        {
-        routines.map(routine => <div className='activities'
+            </div>
+       {
+        activities.map(activity => <div className='activities'
             key={
-                routine.id
+                activity.id
         }>
             <h2>
                
-                Routine Name : {
-                routine.name
+                Activity Count : {
+                activity.count
             }</h2>
-            <h2>Routine Goal: {
-                routine.goal
+            <h2>Routine Duration: {
+                activity.duration
             }</h2>
             
-            {<button key={routine.id} onClick={() => {setEditOpen({open:!editOpen, id: routine.id})}} editOpen={editOpen}>Edit</button>}
-            {editOpen.open && editOpen.id === routine.id ? <UpdateForms id={routine.id}/> : null}
-
-             {<button onClick = {(event)=> {handleDelete(routine.id, event)}}>Delete</button>}
+             
         </div>)
     } </div>);
 
 
 }
-     
-     
 
-
-export default MyRoutines;
+export default AddActivitiesToRoutines;

@@ -290,6 +290,7 @@ export const postActivityToRoutine = async (routineId, activityId, count, durati
             )
         })
         const postedActivityToRoutine = await response.json()
+        console.log("apicall",postedActivityToRoutine);
         return postedActivityToRoutine;
     } catch (error) {
         console.log("error in postActivityToRoutine!")

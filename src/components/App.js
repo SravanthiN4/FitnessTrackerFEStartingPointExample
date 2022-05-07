@@ -4,7 +4,7 @@ import Home from './Home';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
-import MyActivities from './myActivities';
+import MyActivities from './MyActivities';
 import User from './User';
 import Login from './Login'
 import RegisterLogin from './RegisterLogin';
@@ -15,6 +15,7 @@ import { getAllActivities } from '../api';
 const App = () => {
  const [routines, setRoutines] = useState([]);
  const [activities, setActivities] = useState([]);
+ const [searchResults, setSearchResults] = useState({ count: {}, duration: [] });
 
 
  useEffect(async () => {
