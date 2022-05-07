@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
-import Home from './Home';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
