@@ -118,6 +118,7 @@ flex-direction: column;
 
   input{
     border: 1px solid blue;
+    
   }
 
   .routine {
@@ -144,8 +145,8 @@ flex-direction: column;
     flex-direction: column;
     justify-content: center;
     border: 10px solid red;
-    width: 75%;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 15px
@@ -184,13 +185,37 @@ flex-direction: column;
 }
 
 .login{
-    border: 4px solid black;
+  background-color: #3eb5e0;
+  border-radius: 10px;
+  box-shadow: 5px 5px 2px rgb(77, 77, 77);
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%; /* Full width */
+  height: 30%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  padding-top: 0px;
+  display: flex;  
+  justify-content: center;
   }
 
-  /* .testBox{
-  background-color: red;
+  .login-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 100px
+  }
 
-  } */
+  #submitButton{
+    align-self: auto;
+    padding-left: 50%
+  }
+
+
  
  .boxForContent{
    margin-top: 10px;
@@ -199,4 +224,31 @@ flex-direction: column;
 
  .myRoutinesContent{
    border: 2px solid black;
+ }
+
+ .Signup{
+  /* border: 2px solid black; */
+  background-color: #3eb5e0;
+  border-radius: 10px;
+  box-shadow: 5px 5px 2px rgb(77, 77, 77);
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%; /* Full width */
+  height: 30%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  padding-top: 0px;
+  display: flex;  
+  justify-content: center;
+ }
+
+ .Signup-content{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 100px
  }

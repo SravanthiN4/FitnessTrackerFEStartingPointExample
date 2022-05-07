@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { login } from '../api/index';
 
 
@@ -37,27 +37,38 @@ const Login = (props) => {
 
     if (hasTriggeredError) return <p style={{ color: 'red' }}> Whoopse, looks like you need to fix something! </p>
     return (
-
+        <div className="login">
         <div>
             {!loggedIn? 
-            <div className="login">
+
+                <div className='login-content'>
            { username.length === 0 ?
-                <div id='login-text'> Please login below: </div> :
+                <div id='login-text'> Welcome back! Please login below: </div> :
                 
                 <div> Hello {username}, please enter in your information </div>}
             <form onSubmit={handleSubmit}>
+                <div>
                 <label htmlFor='username'>Username:</label>
                 <input type='text' name='username' value={username} onChange={handleChange} />
+                </div>
+
+                <div>
                 <label htmlFor='password'>Password:</label>
                 <input type='password' name='password' value={password} onChange={handlePasswordChange} />
+                </div>
+
                 {hasTriggeredError &&
                 <p style={{ color: 'red' }}> Whoopse, looks like you need to fix something! </p>
                 }
+                <div id='submitButton'>
                 <button className="submit" type='submit'>Submit</button>
+                </div>
             </form> 
-        </div> :
+        </div>
+:
             <><p>You are already signed in!</p><p>Not you?<button className="LogOut"
             onClick={logOut}>Log out</button></p></>}
+        </div>
         </div>
     )
 }

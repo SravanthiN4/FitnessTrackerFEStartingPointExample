@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
-import Home from './Home';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
@@ -48,7 +47,7 @@ return (<div className='app'>
                     </> : <>
                     <button className="button"> <Link id='link' to="/user">User</Link></button>  
                     <button className="button"><Link id='link' to="/myRoutines">MyRoutines</Link></button> 
-                    <button className="button"><Link id='link' to="/myActivities">MyActivities</Link></button>
+                    <button className="button"><Link id='link' to="/MyActivities">MyActivities</Link></button>
                     <button className="button"><Link id='link' to="/routines">Public Routines</Link></button> 
                     <button className="button"><Link id='link' to="/activities">Public Activities</Link></button></>} </div>
                 </div>
@@ -68,7 +67,7 @@ return (<div className='app'>
             <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>  
             <Route path = "/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic} routines = {routines} setRoutines = {setRoutines}/></Route>
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
-            <Route path = "/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
+            <Route path = "/MyActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
 
             </BrowserRouter>
         </div>);
