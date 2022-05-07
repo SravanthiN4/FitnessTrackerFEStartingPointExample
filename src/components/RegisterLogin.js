@@ -3,8 +3,6 @@ import {registerUser} from "../api/index.js";
 
 const RegisterLogin = (props) => {
 
-    
-
     const [hasTriggeredError, setHasTriggeredError] = useState(false);
     const {loggedIn, setLoggedIn, username, setUsername, password, setPassword} = props;
 
@@ -19,8 +17,12 @@ const RegisterLogin = (props) => {
         }
 
         const didRegistrationWork = await registerUser(userObject);
-        setLoggedIn(didRegistrationWork);
+       if (didRegistrationWork === false) {
+           setHasTriggeredError(true);
+       } else {
+        setLoggedIn(didRegistrationWork);}
     }
+
 
     const handleChange = (event) => setUsername(event.target.value);
     const handlePasswordChange = (event) => setPassword(event.target.value)
@@ -30,7 +32,6 @@ const RegisterLogin = (props) => {
         localStorage.removeItem("UserToken");
         setLoggedIn(false);
     }
-
 
 
     return (<div id='SignUp-container'> {
