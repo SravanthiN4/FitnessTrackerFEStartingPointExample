@@ -8,15 +8,19 @@ import MyActivities from './MyActivities';
 import User from './User';
 import Login from './Login'
 import RegisterLogin from './RegisterLogin';
+import { getRoutines } from '../api';
+
 import { getAllActivities } from '../api';
 
 const App = () => {
  const [routines, setRoutines] = useState([]);
  const [activities, setActivities] = useState([]);
 
- const [name, setName] = useState("");
- const [goal,setGoal] = useState("");
- const [isPublic,setIsPublic] = useState(false);
+
+ useEffect(async () => {
+    const allRoutines = await getRoutines();
+    setRoutines(allRoutines);
+ },[setRoutines])
  
  const [username, setUsername] = useState('');
  const [password, setPassword] = useState('');
@@ -65,8 +69,8 @@ return (<div className='app'>
                         <User loggedIn={loggedIn} setLoggedIn={setLoggedIn} username={username} setUsername={setUsername}/>
                     </Route> 
  
-            <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>  
-            <Route path = "/myRoutines"><MyRoutines name = {name} setName = {setName} goal = {goal} setGoal = {setGoal} isPublic = {isPublic} setIsPublic = {setIsPublic} routines = {routines} setRoutines = {setRoutines}/></Route>
+            <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines} username = {username}/></Route>  
+            <Route path = "/myRoutines"><MyRoutines routines = {routines} setRoutines = {setRoutines} loggedIn={loggedIn}/></Route>
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
             <Route path = "/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
 
