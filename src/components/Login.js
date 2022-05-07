@@ -40,14 +40,14 @@ const Login = (props) => {
 
     
     return (
-        <div>
+        <div className="login">
             {loggedIn? <>
             <p>You are already signed in, {username}!</p>
             <p>Not you?<button className="LogOut"
                     onClick={logOut}>Log out</button>
             </p>
         </> : <>
-            <div className="login">
+            <div className="login-content">
                 <div> Hello {username}, please enter in your information </div>
             <form onSubmit={handleSubmit}>
                 <div>
