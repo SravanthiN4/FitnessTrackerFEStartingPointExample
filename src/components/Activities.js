@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import  { getAllActivities, postActivity }  from '../api/index';
+import React, { useEffect } from 'react';
+import  { getAllActivities }  from '../api/index';
 
 
 

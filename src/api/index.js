@@ -11,12 +11,11 @@ export const registerUser = async (userObject) => {
         body: JSON.stringify(userObject)
     })
     const json = await response.json();
-
     if (!json.user) {
         return false;
     } 
      else {
-        console.log("json data in register", json)
+        
         localStorage.setItem('UserToken', json.token);
         return true;
     }}
@@ -47,12 +46,26 @@ export const login = async (userObject) => {
     }
 }
 
+export const getIdOfloggedInUser = async (userObject) => {
+    const URL = `${baseUrl}/users/login`;
 
+    const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userObject)
+    })
+    const json = await response.json();
+    console.log("getIdofloggedInUser", json)
+    return json.id;
+
+
+}
 export const getMe = async () => {
     const URL = `${baseUrl}/users/me`;
     try {
         const url = `${baseUrl}/users/me`;
-        console.log(url);
         const token = localStorage.getItem('UserToken')
         const response = await fetch(url, {
             method: "GET",
@@ -228,7 +241,7 @@ export const postRoutine = async (name, goal, isPublic) => {
 }
 
 
-export const patchRoutine = async (routineId, name, goal, isPublic) => {
+export const patchRoutine = async (routineId, name, goal) => {
     const token = localStorage.getItem('UserToken');
     let response;
     try {
@@ -239,7 +252,7 @@ export const patchRoutine = async (routineId, name, goal, isPublic) => {
                 'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify(
-                {name: name, goal: goal, isPublic: isPublic}
+                {name: name, goal: goal}
             )
         })
         const patchedRoutine = await response.json()
@@ -256,7 +269,7 @@ export const deleteRoutineByRoutineId = async (routineId) => {
     let response;
     try {
         if (token) {
-            response = await fetch(`${baseUrl}/routines${routineId}`, {
+            response = await fetch(`${baseUrl}/routines/${routineId}`, {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json',
