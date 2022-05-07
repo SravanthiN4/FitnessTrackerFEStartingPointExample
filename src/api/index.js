@@ -11,12 +11,11 @@ export const registerUser = async (userObject) => {
         body: JSON.stringify(userObject)
     })
     const json = await response.json();
-
     if (!json.user) {
         return false;
     } 
      else {
-        console.log("json data in register", json)
+        
         localStorage.setItem('UserToken', json.token);
         return true;
     }}
@@ -47,12 +46,26 @@ export const login = async (userObject) => {
     }
 }
 
+export const getIdOfloggedInUser = async (userObject) => {
+    const URL = `${baseUrl}/users/login`;
 
+    const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userObject)
+    })
+    const json = await response.json();
+    console.log("getIdofloggedInUser", json)
+    return json.id;
+
+
+}
 export const getMe = async () => {
     const URL = `${baseUrl}/users/me`;
     try {
         const url = `${baseUrl}/users/me`;
-        console.log(url);
         const token = localStorage.getItem('UserToken')
         const response = await fetch(url, {
             method: "GET",
@@ -228,22 +241,21 @@ export const postRoutine = async (name, goal, isPublic) => {
 }
 
 
-export const patchRoutine = async (newRoutine,id) => {
-   
+export const patchRoutine = async (routineId, name, goal) => {
     const token = localStorage.getItem('UserToken');
     let response;
     try {
-        response = await fetch(`${baseUrl}/routines/${id}`, {
+        response = await fetch(`${baseUrl}/routines/${routineId}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
-            body: JSON.stringify(newRoutine)
-        
-        });
-        const patchedRoutine = await response.json();
-        console.log("api",patchedRoutine);
+            body: JSON.stringify(
+                {name: name, goal: goal}
+            )
+        })
+        const patchedRoutine = await response.json()
         return patchedRoutine;
     } catch (error) {
         console.log("error in patchRoutine!")
