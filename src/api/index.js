@@ -287,7 +287,7 @@ export const deleteRoutineByRoutineId = async (routineId) => {
 }
 
 
-export const postActivityToRoutine = async (routineId, activityId, count, duration) => {
+export const postActivityToRoutine = async (routineId,activityId, count, duration) => {
     const token = localStorage.getItem('UserToken');
     let response;
     try {
