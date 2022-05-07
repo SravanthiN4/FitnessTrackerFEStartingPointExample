@@ -19,10 +19,9 @@ const UpdateForms =  (props) => {
         const newRoutine = {
                 name: name,
                 goal: goal,
-                isPublic: isPublic
             
         }
-        const sendRoutine = await patchRoutine(newRoutine,id);
+        const sendRoutine = await patchRoutine(id, name, goal);
         console.log("afterupdate",routines);
 
         const found = routines.find(routine => routine.id === id);
@@ -35,7 +34,6 @@ const UpdateForms =  (props) => {
     
     const handleName = (event) => setName(event.target.value);
     const handleGoal = (event) => setGoal(event.target.value)
-    const handlePublic = (event) => setIsPublic(event.target.value)
 
     if (hasTriggeredError) return <p style={{ color: 'red' }}> Whoopse, looks like you need to fix something! </p>
 
@@ -48,8 +46,6 @@ const UpdateForms =  (props) => {
             <input type='text' name='Name' value={name} onChange={handleName} />
             <label htmlFor='goal'>Goal</label>
             <input type='text' name='goal' value={goal} onChange={handleGoal} />
-            <label htmlFor='goal'>Public</label>
-            <input type='checkbox' name='isPublic' value={isPublic} onChange={handlePublic} />
                 
                 <button type='submit'>Submit</button>
             </form> </> :  

@@ -4,7 +4,7 @@ import Home from './Home';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
-import MyActivities from './myActivities';
+import MyActivities from './MyActivities';
 import User from './User';
 import Login from './Login'
 import RegisterLogin from './RegisterLogin';
@@ -69,8 +69,8 @@ return (<div className='app'>
                         <User loggedIn={loggedIn} setLoggedIn={setLoggedIn} username={username} setUsername={setUsername}/>
                     </Route> 
  
-            <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines}/></Route>  
-            <Route path = "/myRoutines"><MyRoutines routines = {routines} setRoutines = {setRoutines}/></Route>
+            <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines} username = {username}/></Route>  
+            <Route path = "/myRoutines"><MyRoutines routines = {routines} setRoutines = {setRoutines} loggedIn={loggedIn}/></Route>
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
             <Route path = "/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
 
