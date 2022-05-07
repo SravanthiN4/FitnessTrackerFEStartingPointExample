@@ -50,8 +50,8 @@ return (<div className='app'>
                     <button className="button"><Link id='link' to="/activities">Public Activities</Link></button>
                     </> : <>
                     <button className="button"> <Link id='link' to="/user">User</Link></button>  
-                    <button className="button"><Link id='link' to="/MyRoutines">MyRoutines</Link></button> 
-                    <button className="button"><Link id='link' to="/MyActivities">MyActivities</Link></button>
+                    <button className="button"><Link id='link' to="/myRoutines">MyRoutines</Link></button> 
+                    <button className="button"><Link id='link' to="/myActivities">MyActivities</Link></button>
                     <button className="button"><Link id='link' to="/routines">Public Routines</Link></button> 
                     <button className="button"><Link id='link' to="/activities">Public Activities</Link></button></>} </div>
                 </div>
@@ -69,9 +69,9 @@ return (<div className='app'>
                     </Route> 
  
             <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines} username = {username}/></Route>  
-            <Route path = "/MyRoutines"><MyRoutines routines = {routines} setRoutines = {setRoutines} loggedIn={loggedIn}/></Route>
+            <Route path = "/myRoutines"><MyRoutines routines = {routines} setRoutines = {setRoutines} loggedIn={loggedIn}/></Route>
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
-            <Route path = "/MyActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
+            <Route path = "/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
 
             </BrowserRouter>
         </div>);
