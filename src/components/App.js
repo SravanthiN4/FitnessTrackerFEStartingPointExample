@@ -4,7 +4,7 @@ import Home from './Home';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
-import MyActivities from './MyActivities';
+import MyActivities from './myActivities';
 import User from './User';
 import Login from './Login'
 import RegisterLogin from './RegisterLogin';
@@ -18,10 +18,10 @@ const App = () => {
  const [searchResults, setSearchResults] = useState({ count: {}, duration: [] });
 
 
-//  useEffect(async () => {
-//     const allRoutines = await getRoutines();
-//     setRoutines(allRoutines);
-//  },[setRoutines])
+ useEffect(async () => {
+    const allRoutines = await getRoutines();
+    setRoutines(allRoutines);
+ },[setRoutines])
  
  const [username, setUsername] = useState('');
  const [password, setPassword] = useState('');

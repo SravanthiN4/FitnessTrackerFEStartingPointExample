@@ -129,13 +129,13 @@ const MyRoutines = (props) => {
 
                             
                             
-                            {/* {<button key={routine.id} onClick={() => { setAddOpen({ open: !addOpen, id: routine.id }) }} addOpen={addOpen}>Add</button>}
+                            {<button key={routine.id} onClick={() => { setAddOpen({ open: !addOpen, id: routine.id }) }} addOpen={addOpen}>Add</button>}
                             {addOpen.open && addOpen.id === routine.id ? <> Count:
                                 <input value={count}
                                     onChange={handleCount} />
                                 Duration :
                                 <input value={duration}
-                                    onChange={handleDuration} /><button onClick={(event) => { handleAdd(routine.id) }}>Submit Added Activity</button> </> : null} */}
+                                    onChange={handleDuration} /><button onClick={(event) => { handleAdd(routine.id) }}>Submit Added Activity</button> </> : null}
 
                             
                             
