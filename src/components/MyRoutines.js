@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { deleteRoutineByRoutineId, postRoutine, getMe, getMyRoutines, patchRoutine } from '../api';
+import { deleteRoutineByRoutineId, postRoutine, getMe, getMyRoutines, patchRoutine, postActivity, postActivityToRoutine } from '../api';
 import UpdateForms from './UpdateForm';
 
 const MyRoutines = (props) => {
@@ -7,8 +7,12 @@ const MyRoutines = (props) => {
     const { routines, setRoutines, username, loggedIn } = props;
     const [name, setName] = useState("");
     const [goal, setGoal] = useState("");
+    const [count, setCount] = useState(0);
+    const [duration, setDuration] = useState(0);
+
     const [isPublic, setIsPublic] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
+    const [addOpen, setAddOpen] = useState(false);
     const [isAuthor, setIsAuthor] = useState(false);
     console.log("publicfirst", isPublic);
 
@@ -47,8 +51,17 @@ const MyRoutines = (props) => {
         setGoal(event.target.value);
     }
 
+
     const handleIsPublic = () => {
         setIsPublic(!isPublic)
+    }
+
+    const handleCount = (event) => {
+        setCount(event.target.value);
+    }
+
+    const handleDuration = (event) => {
+        setDuration(event.target.value);
     }
 
 
@@ -67,6 +80,12 @@ const MyRoutines = (props) => {
     const handleEdit = async (id) => {
 
         const sendRoutine = await patchRoutine(id, name, goal);
+
+    }
+
+    const handleAdd = async () => {
+
+        const sendActivity = await postActivityToRoutine(routineId, activityId, count, duration);
 
     }
 
@@ -106,8 +125,20 @@ const MyRoutines = (props) => {
                                     onChange={handleNameChange} />
                                 Goal :
                                 <input value={goal}
-                                    onChange={handleGoalChange} /><button onClick={handleEdit(routine.id)}>Submit Edited Routine</button> </> : null}
+                                    onChange={handleGoalChange} /><button onClick={(event) => { handleEdit(routine.id) }}>Submit Edited Routine</button> </> : null}
 
+                            
+                            
+                            {/* {<button key={routine.id} onClick={() => { setAddOpen({ open: !addOpen, id: routine.id }) }} addOpen={addOpen}>Add</button>}
+                            {addOpen.open && addOpen.id === routine.id ? <> Count:
+                                <input value={count}
+                                    onChange={handleCount} />
+                                Duration :
+                                <input value={duration}
+                                    onChange={handleDuration} /><button onClick={(event) => { handleAdd(routine.id) }}>Submit Added Activity</button> </> : null} */}
+
+                            
+                            
                             {<button onClick={(event) => { handleDelete(routine.id, event) }}>Delete</button>}
 
                         </div>

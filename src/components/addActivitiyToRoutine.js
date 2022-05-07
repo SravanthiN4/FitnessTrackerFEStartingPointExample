@@ -1,19 +1,13 @@
 import React, {useState} from 'react';
 import {postActivityToRoutine } from '../api';
 
-
-
 const AddActivitiesToRoutines = (props) => {
-
-   // const {routines, setRoutines} = props;
     const [count, setCount] = useState(0);
     const [duration, setDuration] = useState(0);
     const {activities, setActivities} = props;
 
-   
- const handleRoutine = async () => {
+    const handleRoutine = async () => {
         console.log("creating a new activity");
-
 
         const routineActivityData = await postActivityToRoutine(routineId, activityId, count, duration)
         console.log("routineData", routineActivityData)

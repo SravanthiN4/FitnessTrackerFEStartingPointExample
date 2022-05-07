@@ -18,10 +18,10 @@ const App = () => {
  const [searchResults, setSearchResults] = useState({ count: {}, duration: [] });
 
 
- useEffect(async () => {
-    const allRoutines = await getRoutines();
-    setRoutines(allRoutines);
- },[setRoutines])
+//  useEffect(async () => {
+//     const allRoutines = await getRoutines();
+//     setRoutines(allRoutines);
+//  },[setRoutines])
  
  const [username, setUsername] = useState('');
  const [password, setPassword] = useState('');
