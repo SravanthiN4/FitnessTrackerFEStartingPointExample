@@ -94,11 +94,11 @@ const MyRoutines = (props) => {
             </div>
         </div>
             <>
-                <div>
+                <div> 
                     {routines.map(routine =>
-                        <div className="activities">
+                        <div className="activities" key={routine.id}>
                             <h2>{routine.name}</h2>
-                            <p>{routine.goal}</p>
+                            <p>{routine.goal}</p> 
 
                             {<button key={routine.id} onClick={() => { setEditOpen({ open: !editOpen, id: routine.id }) }} editOpen={editOpen}>Edit</button>}
                             {editOpen.open && editOpen.id === routine.id ? <> Name:
