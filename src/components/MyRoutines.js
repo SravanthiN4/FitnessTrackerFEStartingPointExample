@@ -19,7 +19,7 @@ const MyRoutines = (props) => {
         const remainingRoutines = routines.filter((routine) => routineId !== routine.id);
         setRoutines(remainingRoutines);
     }
-
+ 
     const handleRoutine = async () => {
         console.log("creating a new routine");
 
