@@ -25,13 +25,10 @@ const [loggedIn, setLoggedIn] = useState(false);
     const allRoutines = await getRoutines();
     setRoutines(allRoutines);
  },[setRoutines])
-<<<<<<< HEAD
 
  
- const [username, setUsername] = useState('');
- const [password, setPassword] = useState('');
-=======
->>>>>>> origin/main
+//  const [username, setUsername] = useState('');
+//  const [password, setPassword] = useState('');
 
  useEffect(async () => {
     const user = await getMe(username);
@@ -87,17 +84,10 @@ return (<div className='app'>
                         <User loggedIn={loggedIn} setLoggedIn={setLoggedIn} username={username} setUsername={setUsername} user={user} setUser={setUser}/>
                     </Route> 
  
-<<<<<<< HEAD
-                    <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines} username = {username}/></Route>  
-                    <Route path = "/myRoutines"><MyRoutines routines = {routines} setRoutines = {setRoutines} activities = {activities} setActivities = {setActivities} loggedIn={loggedIn}/></Route>
-                    <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
-                    <Route path = "/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
-=======
             <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines} username = {username}/></Route>  
             <Route path = "/myRoutines"><MyRoutines routines = {routines} setRoutines = {setRoutines} myRoutines = {myRoutines} setMyRoutines = {setMyRoutines} loggedIn={loggedIn} user={user} setUser={setUser} username={username} setUsername={setUsername}/></Route>
             <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
             <Route path = "/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
->>>>>>> origin/main
 
             </BrowserRouter>
         </div>);
