@@ -53,14 +53,6 @@ console.log(user, username)
 
     }
 
-<<<<<<< HEAD
-
-
-    return (
-
-
-        <div className='contentBox'>
-=======
     useEffect(() => { (async () => {
       const userName = localStorage.getItem('username');
       const myRoutines = await getMyRoutines(userName);
@@ -71,7 +63,6 @@ console.log(user, username)
     
         return (<div>
            <div> <h2>Create a new routine:</h2>
->>>>>>> BranchToFixUserExp-Co-
             <div className="boxForContent">
                 Name:
                 <input value={name}
@@ -88,40 +79,6 @@ console.log(user, username)
                 <button onClick={handleRoutine}>
                     Submit New Routine
                 </button>
-<<<<<<< HEAD
- 
-
-
-            <>
-                <div> 
-                    {routines.map(routine =>
-                        <div className="content" key={routine.id}>
-                            <h2>{routine.name}</h2>
-                            <p>{routine.goal}</p> 
-                        {/* <div className='editDeleteButtons'> */}
-                            <div className="editDeleteButtons">
-                            {<button className="editButton"key={routine.id} onClick={() => { setEditOpen({ open: !editOpen, id: routine.id }) }} editOpen={editOpen}>Edit</button>}
-                            
-                            {editOpen.open && editOpen.id === routine.id ? 
-                            <> 
-                            <span>Name : <input value={name} onChange={handleNameChange}/></span>
-                           <span>Goal :  <input value={goal} onChange={handleGoalChange} /><button className="submitEdit" onClick={handleEdit(routine.id)}>Submit Edited Routine</button> </span> </> : null}
-                            </div>
-                            <div className="editDeleteButtons">
-                            {<button className="deleteButton" onClick={(event) => { handleDelete(routine.id, event) }}>Delete</button>}
-                            </div>
-                            {/* </div> */}
-                        </div>
-                    )}
-                </div>
-
-            </>
-
-
-        </div>
-        </div>
-        )
-=======
             </div>
         </div> 
         <div><p></p></div>
@@ -150,7 +107,6 @@ console.log(user, username)
             )}</div> */}
         </div>
         </div>)
->>>>>>> BranchToFixUserExp-Co-
 }
 
 
