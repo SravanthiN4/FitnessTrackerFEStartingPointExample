@@ -1,6 +1,7 @@
 
 import React, {useState} from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
+import {CgLogOut} from 'react-icons/cg'
 
 
 const User = (props) => {
@@ -22,7 +23,7 @@ const User = (props) => {
         {
         loggedIn ? <> {
             <div className='userContent'>
-                <h1>Welcome, {username}!</h1> <p>Not you?<button className="LogOut" onClick={logOut}>Log out</button></p>
+                <h1>Welcome, {username}!</h1> <p className='notYou'>Not you?<button className="signOut" onClick={logOut}>Log out <CgLogOut/></button></p>
             </div>
             
         } </> : <div>No user logged in! </div>

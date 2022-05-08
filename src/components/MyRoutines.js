@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { deleteRoutineByRoutineId, postRoutine, getMe, getMyRoutines, patchRoutine } from '../api';
 import UpdateForms from './UpdateForm';
+import {FiEdit} from 'react-icons/fi'
+import {RiChatDeleteLine} from 'react-icons/ri'
+
 
 const MyRoutines = (props) => {
 
@@ -103,7 +106,7 @@ const MyRoutines = (props) => {
                             <p>{routine.goal}</p> 
                         {/* <div className='editDeleteButtons'> */}
                             <div className="editDeleteButtons">
-                            {<button className="editButton"key={routine.id} onClick={() => { setEditOpen({ open: !editOpen, id: routine.id }) }} editOpen={editOpen}>Edit</button>}
+                            {<button className="editButton"key={routine.id} onClick={() => { setEditOpen({ open: !editOpen, id: routine.id }) }} editOpen={editOpen}>Edit <FiEdit/></button>}
                             
                             {editOpen.open && editOpen.id === routine.id ? 
                             <> 
@@ -111,7 +114,7 @@ const MyRoutines = (props) => {
                            <span>Goal :  <input value={goal} onChange={handleGoalChange} /><button className="submitEdit" onClick={handleEdit(routine.id)}>Submit Edited Routine</button> </span> </> : null}
                             </div>
                             <div className="editDeleteButtons">
-                            {<button className="deleteButton" onClick={(event) => { handleDelete(routine.id, event) }}>Delete</button>}
+                            {<button className="deleteButton" onClick={(event) => { handleDelete(routine.id, event) }}>Delete <RiChatDeleteLine/> </button>}
                             </div>
                             {/* </div> */}
                         </div>

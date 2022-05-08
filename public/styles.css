@@ -150,11 +150,11 @@ flex-direction: column;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 75%;
+    width: 80%;
     height: 100vh;
     overflow-y: scroll;
     overflow-x: hidden;
-    /* padding: 15px */
+    padding: 15px;
     background: white;
     box-shadow: 5px, 5px, #18272F;
 
@@ -241,7 +241,7 @@ flex-direction: column;
 .button:hover{
   opacity: 1;
   color: #fff;
-  box-shadow: inset 210px 0 0 0 #54b3d6;
+  box-shadow: inset 400px 0 0 0 #54b3d6;
 };
 
 .submitButton{
@@ -346,3 +346,24 @@ flex-direction: column;
     font: Arial;
     font-size: medium;
   }
+
+  
+.signOut{
+  background-color: whitesmoke;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: medium;
+  margin: 4px 2px;
+  opacity: 0.6;}
+
+.signOut:hover{
+  cursor: pointer;
+}
+
+.notYou{
+  font-family: arial;
+  font-size: large;
+
+}
