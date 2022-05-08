@@ -332,7 +332,7 @@ export const patchRoutine_Activity = async (routineActivityId, count, duration) 
     }
 }
 
-export const deleteRoutine_Activity = async (routineActivityId, count, duration) => {
+export const deleteRoutine_Activity = async (routineActivityId) => {
     const token = localStorage.getItem('UserToken');
     let response;
     try {

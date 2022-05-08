@@ -10,6 +10,12 @@ const MyRoutines = (props) => {
     const [count, setCount] = useState(0);
     const [activityId, setActivityId] = useState(0);
     const [duration, setDuration] = useState(0);
+    
+    const [addedCount,setAddedCount] = useState(0);
+    const [addedDuration, setAddDuration] = useState(0);
+    const [addedActivityId, setNewActivityId] = useState(0);
+    
+    
 
     const [isPublic, setIsPublic] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
@@ -24,8 +30,10 @@ const MyRoutines = (props) => {
         const remainingRoutines = routines.filter((routine) => routineId !== routine.id);
         setRoutines(remainingRoutines);
     }
+
  
-    const handleRoutine = async () => {
+    const handleRoutine = async (event) => {
+        event.preventDefault();
         console.log("creating a new routine");
 
 
@@ -89,14 +97,21 @@ const MyRoutines = (props) => {
     
 
     const handleAdd = async (routineId,event) => {
-        event.preventDefault();
-
-        const sendActivity = await postActivityToRoutine(routineId, activityId, count, duration);
-        console.log("sendActivity",sendActivity);
-
-
         
+        event.preventDefault();
+        const sendActivity = await postActivityToRoutine(routineId, activityId, count, duration);
+        const newCount = sendActivity.count;
+        const newDuration = sendActivity.duration;
+        const newActivityId = sendActivity.activityId;
+        setAddedCount(newCount);
+        setAddDuration(newDuration);
+        setNewActivityId(newActivityId);
+
     }
+
+
+
+
     return (
 
         <> <div>
@@ -124,6 +139,9 @@ const MyRoutines = (props) => {
                         <div className="activities" key={routine.id}>
                             <h2>Routine Name : {routine.name}</h2>
                             <p> Routine Goal : {routine.goal}</p> 
+                            <p>Count : {addedCount}</p>
+                            <p>Duration : {addedDuration}</p>
+                            <p>ActivityId : {addedActivityId}</p>
                            
                             {<button key={routine.id} onClick={() => { setEditOpen({ open: !editOpen, id: routine.id }) }} editOpen={editOpen}>Edit</button>}
                             {editOpen.open && editOpen.id === routine.id ? <> Name:
@@ -134,7 +152,7 @@ const MyRoutines = (props) => {
                                     onChange={handleGoalChange} /><button onClick={(event) => { handleEdit(routine.id) }}>Submit Edited Routine</button> </> : null}
             
                             {     
-                            <button key={routine.id} onClick={() => { setAddOpen({ open: !addOpen, id: routine.id }) }} addOpen={addOpen}>Add</button>}
+                            <button key={routine.name} onClick={() => { setAddOpen({ open: !addOpen, id: routine.id }) }} addOpen={addOpen}>Add</button>}
 
                                 {addOpen.open && addOpen.id === routine.id ? 
                                 
@@ -150,15 +168,18 @@ const MyRoutines = (props) => {
                                     onChange={handleActivityId}/>
    
                             <button onClick={(event) => { handleAdd(routine.id,event) }}>Submit Added Activity</button> 
-                            <p>Count : {routine.count}</p>
-                            <p> Duration : {routine.duration}</p> 
-                            </> 
+                            
+                                <p>Count : {addedCount}</p>
+                                <p>Duration : {addedDuration}</p>
+                                <p>ActivityId : {addedActivityId}</p>
                                 
+                            </> 
+      
                             : null}
 
                             
                             {<button onClick={(event) => { handleDelete(routine.id, event) }}>Delete</button>}
-                        
+                            
                         </div>
                         
                     )}
@@ -168,6 +189,8 @@ const MyRoutines = (props) => {
 
         </>)
 }
+
+
 
 
 export default MyRoutines;
