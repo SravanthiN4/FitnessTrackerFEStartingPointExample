@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
-import Home from './Home';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
@@ -8,28 +7,43 @@ import MyActivities from './myActivities';
 import User from './User';
 import Login from './Login'
 import RegisterLogin from './RegisterLogin';
-import { getRoutines } from '../api';
+import { getRoutines, getMe, getMyRoutines} from '../api';
 
 import { getAllActivities } from '../api';
 
 const App = () => {
  const [routines, setRoutines] = useState([]);
+ const [myRoutines, setMyRoutines] = useState([]);
  const [activities, setActivities] = useState([]);
- 
- const [count, setCount] = useState(0);
- const [activityId, setActivityId] = useState(0);
- const [duration, setDuration] = useState(0);
+ const[user, setUser] = useState();
+ const [username, setUsername] = useState('');
+ const [password, setPassword] = useState('');
+
+const [loggedIn, setLoggedIn] = useState(false);
 
  useEffect(async () => {
     const allRoutines = await getRoutines();
     setRoutines(allRoutines);
  },[setRoutines])
+<<<<<<< HEAD
 
  
  const [username, setUsername] = useState('');
  const [password, setPassword] = useState('');
+=======
+>>>>>>> origin/main
 
-const [loggedIn, setLoggedIn] = useState(false);
+ useEffect(async () => {
+    const user = await getMe(username);
+    setUser(user);
+    setUsername(user.username)
+}, [setUsername]);
+
+useEffect(async () => {
+    const routines = await getMyRoutines(username);
+    console.log("routines",routines);
+    setMyRoutines(routines);
+}, [setMyRoutines]);
 
 
 useEffect(() => {
@@ -70,13 +84,20 @@ return (<div className='app'>
                     </Route>
 
                     <Route path="/user">
-                        <User loggedIn={loggedIn} setLoggedIn={setLoggedIn} username={username} setUsername={setUsername}/>
+                        <User loggedIn={loggedIn} setLoggedIn={setLoggedIn} username={username} setUsername={setUsername} user={user} setUser={setUser}/>
                     </Route> 
  
+<<<<<<< HEAD
                     <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines} username = {username}/></Route>  
                     <Route path = "/myRoutines"><MyRoutines routines = {routines} setRoutines = {setRoutines} activities = {activities} setActivities = {setActivities} loggedIn={loggedIn}/></Route>
                     <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
                     <Route path = "/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
+=======
+            <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines} username = {username}/></Route>  
+            <Route path = "/myRoutines"><MyRoutines routines = {routines} setRoutines = {setRoutines} myRoutines = {myRoutines} setMyRoutines = {setMyRoutines} loggedIn={loggedIn} user={user} setUser={setUser} username={username} setUsername={setUsername}/></Route>
+            <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
+            <Route path = "/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
+>>>>>>> origin/main
 
             </BrowserRouter>
         </div>);

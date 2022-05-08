@@ -23,21 +23,22 @@
    justify-content: space-evenly;
    flex-direction: column;
    overflow: hidden;
- }
+   }
  
  #header {
    display: flex;
    flex-direction: column;
    justify-content: space-around;
    align-items: stretch;
-  background-color: gray;
-  padding: 8px;
+  background-color: 	#060709;
+  /* padding: 8px; */
   text-align: center;
+  font-family: 'Parisienne', cursive;
   color: white;
   font-size: xx-large;
   top: 0;
-  margin-bottom: 15px;
-  box-shadow: 5px 5px 5px  rgb(14, 13, 13);
+  /* margin-bottom: 15px; */
+  box-shadow: 5px 5px 5px  rgb(58, 50, 50);
   /* position: fixed;
   width: 100%; */
 }
@@ -118,6 +119,7 @@ flex-direction: column;
 
   input{
     border: 1px solid blue;
+    
   }
 
   .routine {
@@ -143,21 +145,81 @@ flex-direction: column;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 10px solid red;
-    width: 100%;
-    height: 100%;
+    width: 75%;
+    height: 100vh;
     overflow-y: scroll;
     overflow-x: hidden;
-    padding: 15px
+    /* padding: 15px */
+    background: white;
+    box-shadow: 5px, 5px, #18272F;
+
   }
+
   .content {
     border: 5px solid black;
     padding: 10px;
     border-radius: 15px;
-    box-shadow: 2px 2px blue;
+    box-shadow: 3px 3px 3px black;
+    background-color: #f14e4e;
     margin: 10px;
+    font-size: medium;
+    font-family: Arial;
   }
 
+  .editDeleteButtons{
+    border: 2px solid black;
+    width: 18%;
+    background-color: whitesmoke;
+    display: flex;
+    flex-wrap: wrap;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: medium;
+    font-family: Arial;
+    margin: 4px 2px;
+    opacity: 0.8;
+    transition: color 0.1s ease-in-out, box-shadow .0.1s ease-in-out;
+    /* border-radius: 20px; */
+  }
+
+  /* .editDeleteButtons:hover{
+    opacity: 1;
+    color: #fff;
+    box-shadow: inset 210px 0 0 0 rgb(0, 0, 0);
+  } */
+
+
+  .editButton{
+    width: 100%;
+    font-family: Arial;
+    font-size: medium;
+  }
+
+  .editButton:hover{
+  cursor: pointer;
+  }
+
+  .deleteButton{
+    width: 100%;
+    font-family: Arial;
+    font-size: medium;
+  }
+
+  .deleteButton:hover{
+    cursor: pointer;
+  }
+
+  .submitEdit{
+    border: 1px solid black;
+    color: rgb(0, 0, 0);
+    padding: 5px;
+  }
+
+  .submitEdit:hover{
+  cursor: pointer;
+  }
   .button{
     background-color: whitesmoke;
     border: none;
@@ -174,7 +236,7 @@ flex-direction: column;
 .button:hover{
   opacity: 1;
   color: #fff;
-  box-shadow: inset 200px 0 0 0 #54b3d6;
+  box-shadow: inset 210px 0 0 0 #54b3d6;
 };
 
 .submitButton{
@@ -184,13 +246,37 @@ flex-direction: column;
 }
 
 .login{
-    border: 4px solid black;
+  background-color: #3eb5e0;
+  border-radius: 10px;
+  box-shadow: 5px 5px 2px rgb(77, 77, 77);
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%; /* Full width */
+  height: 30%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  padding-top: 0px;
+  display: flex;  
+  justify-content: center;
   }
 
-  /* .testBox{
-  background-color: red;
+  .login-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 100px
+  }
 
-  } */
+  #submitButton{
+    align-self: auto;
+    padding-left: 50%
+  }
+
+
  
  .boxForContent{
    margin-top: 10px;
@@ -199,4 +285,31 @@ flex-direction: column;
 
  .myRoutinesContent{
    border: 2px solid black;
+ }
+
+ .Signup{
+  /* border: 2px solid black; */
+  background-color: #3eb5e0;
+  border-radius: 10px;
+  box-shadow: 5px 5px 2px rgb(77, 77, 77);
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%; /* Full width */
+  height: 30%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  padding-top: 0px;
+  display: flex;  
+  justify-content: center;
+ }
+
+ .Signup-content{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 100px
  }

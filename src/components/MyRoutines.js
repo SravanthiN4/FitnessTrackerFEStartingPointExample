@@ -5,6 +5,12 @@ import { deleteRoutineByRoutineId, postRoutine, getMe, patchRoutine, postActivit
 const MyRoutines = (props) => {
 
     const { routines, setRoutines, username, activities, setActivities } = props;
+import React, { useEffect, useState } from 'react';
+import { deleteRoutineByRoutineId, postRoutine,getMyRoutines, patchRoutine } from '../api';
+
+const MyRoutines = (props) => {
+
+    const {routines, setRoutines, username, user, myRoutines, setMyRoutines } = props;
     const [name, setName] = useState("");
     const [goal, setGoal] = useState("");
     const [count, setCount] = useState(0);
@@ -18,11 +24,15 @@ const MyRoutines = (props) => {
     const [addedActivityId, setNewActivityId] = useState(0);
     
     
+    
 
     const [isPublic, setIsPublic] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [addOpen, setAddOpen] = useState(false);
     const [activityOpen, setActivityOpen] = useState(false);
+
+
+console.log(user, username)
 
       
     useEffect(async () => {
@@ -34,8 +44,8 @@ const MyRoutines = (props) => {
     const handleDelete = async (routineId, event) => {
         event.preventDefault();
         await deleteRoutineByRoutineId(routineId);
-        console.log("in delete", routines);
-        const remainingRoutines = routines.filter((routine) => routineId !== routine.id);
+        console.log("in delete", myRoutines);
+        const remainingRoutines = myRoutines.filter((routine) => routineId !== routine.id);
         setRoutines(remainingRoutines);
     }
 
@@ -53,18 +63,14 @@ const MyRoutines = (props) => {
     const handleRoutine = async (event) => {
         event.preventDefault();
         console.log("creating a new routine");
-
-
         const routineData = await postRoutine(name, goal, isPublic)
         console.log("routineData", routineData)
-
         const newRoutineList = [
             routineData,
             ...routines
         ]
         console.log("newRoutineList", newRoutineList)
         setRoutines(newRoutineList);
-
         setName("");
         setGoal("");
         setIsPublic(false);
@@ -95,46 +101,21 @@ const MyRoutines = (props) => {
         setActivityId(event.target.value);
     }
 
-
-    const isAuthorFunction = async (username) => {
-        const user = await getMe(username);
-        return user;
-    }
-
-    const user = isAuthorFunction({ username });
-    console.log(user.object)
-   
-    //routine update
     const handleEdit = async (id) => {
-
         const sendRoutine = await patchRoutine(id, name, goal);
 
     }
 
-    //routine activity update
-    const handleEditActivity = async (routineActivityId) => {
-
-        const sendRoutineActivity = await patchRoutine_Activity(routineActivityId, count, duration);
-
-    }
+    useEffect(() => { (async () => {
+      const userName = localStorage.getItem('username');
+      const myRoutines = await getMyRoutines(userName);
+      console.log("myRoutines", myRoutines, typeof(myRoutines), JSON.parse(JSON.stringify(myRoutines)));
+      setMyRoutines(myRoutines);
+      })();
+    }, [myRoutines]);
     
-    //add activity to routine
-    const handleAdd = async (routineId,event) => {
-        
-        event.preventDefault();
-        const sendActivity = await postActivityToRoutine(routineId, activityId, count, duration);
-        const newCount = sendActivity.count;
-        const newDuration = sendActivity.duration;
-        const newActivityId = sendActivity.activityId;
-        setAddedCount(newCount);
-        setAddDuration(newDuration);
-        setNewActivityId(newActivityId);
-
-    }
-
-    return (
-
-        <> <div>
+        return (<div>
+           <div> <h2>Create a new routine:</h2>
             <div className="boxForContent">
                 Name:
                 <input value={name}
@@ -196,7 +177,7 @@ const MyRoutines = (props) => {
                                 Activities <span>({ activityList.length })</span>
                             </label>
                             <select 
-                                name="activitiesroutines"
+                                name=""
                                 value={ activity } 
                                 onChange={(event) => setActivities(event.target.value)}>
                                 <option value="any">Any</option>
@@ -232,7 +213,10 @@ const MyRoutines = (props) => {
 
             </>
 
-        </>)
+                </div>
+            )}</div> }
+        </div>
+        </div>)
 }
 
 
