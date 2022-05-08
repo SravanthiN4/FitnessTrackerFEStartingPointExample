@@ -1,5 +1,5 @@
 import React, {useState } from 'react';
-import { deleteRoutineByRoutineId, postRoutine, getMe, patchRoutine, postActivityToRoutine } from '../api';
+import { deleteRoutineByRoutineId, postRoutine, getMe, patchRoutine, postActivityToRoutine, deleteRoutine_Activity, patchRoutine_Activity } from '../api';
 
 
 const MyRoutines = (props) => {
@@ -20,6 +20,7 @@ const MyRoutines = (props) => {
     const [isPublic, setIsPublic] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [addOpen, setAddOpen] = useState(false);
+    const [activityOpen, setActivityOpen] = useState(false);
     //const [isAuthor, setIsAuthor] = useState(false);
     console.log("publicfirst", isPublic);
 
@@ -31,6 +32,15 @@ const MyRoutines = (props) => {
         setRoutines(remainingRoutines);
     }
 
+    const handleDeleteActivity = async (routineActivityId, event) => {
+        event.preventDefault();
+       const deletedActivity =  await deleteRoutine_Activity(routineActivityId);
+        console.log("in activity delete", deletedActivity);
+        const remainingRoutines = routines.filter((routine) => routineActivityId !== routine.id);
+        setRoutines(remainingRoutines);
+    }
+
+    
  
     const handleRoutine = async (event) => {
         event.preventDefault();
@@ -69,12 +79,16 @@ const MyRoutines = (props) => {
         setCount(event.target.value);
     }
 
-    const handleDuration = (event) => {
-        setDuration(event.target.value);
-    }
-    const handleActivityId = (event) => {
+   const handleDuration = (event) => {
+       setDuration(event.target.value);
+   }
+
+   const handleActivityId = (event) => {
         setActivityId(event.target.value);
     }
+
+    
+    
 
 
 
@@ -92,6 +106,12 @@ const MyRoutines = (props) => {
     const handleEdit = async (id) => {
 
         const sendRoutine = await patchRoutine(id, name, goal);
+
+    }
+
+    const handleEditActivity = async (routineActivityId) => {
+
+        const sendRoutineActivity = await patchRoutine_Activity(routineActivityId, count, duration);
 
     }
     
@@ -139,9 +159,7 @@ const MyRoutines = (props) => {
                         <div className="activities" key={routine.id}>
                             <h2>Routine Name : {routine.name}</h2>
                             <p> Routine Goal : {routine.goal}</p> 
-                            <p>Count : {addedCount}</p>
-                            <p>Duration : {addedDuration}</p>
-                            <p>ActivityId : {addedActivityId}</p>
+                            
                            
                             {<button key={routine.id} onClick={() => { setEditOpen({ open: !editOpen, id: routine.id }) }} editOpen={editOpen}>Edit</button>}
                             {editOpen.open && editOpen.id === routine.id ? <> Name:
@@ -172,7 +190,17 @@ const MyRoutines = (props) => {
                                 <p>Count : {addedCount}</p>
                                 <p>Duration : {addedDuration}</p>
                                 <p>ActivityId : {addedActivityId}</p>
+
+                                {<button onClick={(event) => { handleDeleteActivity(activityId, event) }}>DeleteActivity</button>}
                                 
+                                {<button key={routine.id} onClick={() => { setActivityOpen({ open: !activityOpen, id: routine.id }) }} activityOpen={activityOpen}>Edit Activity</button>}
+                                {activityOpen.open && activityOpen.id === routine.id ? <> Name:
+                                <input value={count}
+                                    onChange={handleCount} />
+                                Goal :
+                                <input value={duration}
+                                    onChange={handleDuration} /><button onClick={(event) => { handleEditActivity(routine.id) }}>Submit Edited Routine</button> </> : null}
+                            
                             </> 
       
                             : null}
