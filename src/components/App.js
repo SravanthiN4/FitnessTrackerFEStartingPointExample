@@ -15,8 +15,10 @@ import { getAllActivities } from '../api';
 const App = () => {
  const [routines, setRoutines] = useState([]);
  const [activities, setActivities] = useState([]);
- const [searchResults, setSearchResults] = useState({ count: {}, duration: [] });
-
+ 
+ const [count, setCount] = useState(0);
+ const [activityId, setActivityId] = useState(0);
+ const [duration, setDuration] = useState(0);
 
  useEffect(async () => {
     const allRoutines = await getRoutines();
