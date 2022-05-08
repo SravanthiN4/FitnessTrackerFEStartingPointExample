@@ -56,7 +56,7 @@ console.log(user, username)
     useEffect(() => { (async () => {
       const userName = localStorage.getItem('username');
       const myRoutines = await getMyRoutines(userName);
-      console.log(myRoutines);
+      console.log("myRoutines", myRoutines, typeof(myRoutines), JSON.parse(JSON.stringify(myRoutines)));
       setMyRoutines(myRoutines);
       })();
     }, [myRoutines]);
@@ -84,8 +84,11 @@ console.log(user, username)
         <div><p></p></div>
         <div> <h2> Here all your routines </h2> 
        <pre><code>{JSON.stringify(myRoutines, null, 2)}</code></pre>
-
-        <div>{typeof(myRoutines)=="object"? "loading" : myRoutines.map(routine =>
+    
+       {/* <pre><code>{JSON.parse(myRoutines)}</code></pre> */}
+<div>{myRoutines.name}</div>
+<div>{myRoutines.goal}</div>
+        {/* <div>{typeof(myRoutines)=="object"? "loading" : myRoutines.map(routine =>
                 <div className="activities" key={routine.name}>
                     <h2>{routine.name}</h2>
                     <p>{routine.goal}</p> 
@@ -101,7 +104,7 @@ console.log(user, username)
                     {<button onClick={(event) => { handleDelete(routine.id, event) }}>Delete</button>}
 
                 </div>
-            )}</div>
+            )}</div> */}
         </div>
         </div>)
 }

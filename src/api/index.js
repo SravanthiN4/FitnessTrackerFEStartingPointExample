@@ -71,13 +71,14 @@ export const getMe = async () => {
 
 
 export const getMyRoutines = async (username) => {
-    
+    const token = localStorage.getItem('UserToken');
     let response;
     try { 
         response = await fetch(`${baseUrl}/users/${username}/routines`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
             }
             
         })
