@@ -1,15 +1,17 @@
-import React, {useState } from 'react';
-import { deleteRoutineByRoutineId, postRoutine, getMe, patchRoutine, postActivityToRoutine, deleteRoutine_Activity, patchRoutine_Activity } from '../api';
+import React, {useState, useEffect } from 'react';
+import { deleteRoutineByRoutineId, postRoutine, getMe, patchRoutine, postActivityToRoutine, deleteRoutine_Activity, patchRoutine_Activity, getAllActivities } from '../api';
 
 
 const MyRoutines = (props) => {
 
-    const { routines, setRoutines, username } = props;
+    const { routines, setRoutines, username, activities, setActivities } = props;
     const [name, setName] = useState("");
     const [goal, setGoal] = useState("");
     const [count, setCount] = useState(0);
     const [activityId, setActivityId] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [activityList, setActivityList] = useState([]);
+    const [activity, setActivity] = useState('any');
     
     const [addedCount,setAddedCount] = useState(0);
     const [addedDuration, setAddDuration] = useState(0);
@@ -21,9 +23,14 @@ const MyRoutines = (props) => {
     const [editOpen, setEditOpen] = useState(false);
     const [addOpen, setAddOpen] = useState(false);
     const [activityOpen, setActivityOpen] = useState(false);
-    //const [isAuthor, setIsAuthor] = useState(false);
-    console.log("publicfirst", isPublic);
 
+      
+    useEffect(async () => {
+        const getActivityRoutine = await getAllActivities();
+        setActivities(activityList);
+     },[setActivities])
+
+    //delete routine
     const handleDelete = async (routineId, event) => {
         event.preventDefault();
         await deleteRoutineByRoutineId(routineId);
@@ -32,6 +39,7 @@ const MyRoutines = (props) => {
         setRoutines(remainingRoutines);
     }
 
+    //delete activity
     const handleDeleteActivity = async (routineActivityId, event) => {
         event.preventDefault();
        const deletedActivity =  await deleteRoutine_Activity(routineActivityId);
@@ -41,7 +49,7 @@ const MyRoutines = (props) => {
     }
 
     
- 
+ //create routine
     const handleRoutine = async (event) => {
         event.preventDefault();
         console.log("creating a new routine");
@@ -87,10 +95,6 @@ const MyRoutines = (props) => {
         setActivityId(event.target.value);
     }
 
-    
-    
-
-
 
     const isAuthorFunction = async (username) => {
         const user = await getMe(username);
@@ -99,23 +103,22 @@ const MyRoutines = (props) => {
 
     const user = isAuthorFunction({ username });
     console.log(user.object)
-    // if(user.id === routines.id) {
-    //     setIsAuthor(true);
-    // }
-
+   
+    //routine update
     const handleEdit = async (id) => {
 
         const sendRoutine = await patchRoutine(id, name, goal);
 
     }
 
+    //routine activity update
     const handleEditActivity = async (routineActivityId) => {
 
         const sendRoutineActivity = await patchRoutine_Activity(routineActivityId, count, duration);
 
     }
     
-
+    //add activity to routine
     const handleAdd = async (routineId,event) => {
         
         event.preventDefault();
@@ -128,9 +131,6 @@ const MyRoutines = (props) => {
         setNewActivityId(newActivityId);
 
     }
-
-
-
 
     return (
 
@@ -169,7 +169,7 @@ const MyRoutines = (props) => {
                                 <input value={goal}
                                     onChange={handleGoalChange} /><button onClick={(event) => { handleEdit(routine.id) }}>Submit Edited Routine</button> </> : null}
             
-                            {     
+                            { 
                             <button key={routine.name} onClick={() => { setAddOpen({ open: !addOpen, id: routine.id }) }} addOpen={addOpen}>Add</button>}
 
                                 {addOpen.open && addOpen.id === routine.id ? 
@@ -190,9 +190,26 @@ const MyRoutines = (props) => {
                                 <p>Count : {addedCount}</p>
                                 <p>Duration : {addedDuration}</p>
                                 <p>ActivityId : {addedActivityId}</p>
+                          
+                          
+                            <label>
+                                Activities <span>({ activityList.length })</span>
+                            </label>
+                            <select 
+                                name="activitiesroutines"
+                                value={ activity } 
+                                onChange={(event) => setActivities(event.target.value)}>
+                                <option value="any">Any</option>
+                                {activityList.map((activity, idx) =>
+                                <option key={ `${ idx }:${ activity.name }`} value={ activity.name }>
+                                { activity.name }
+                                </option>
+                                )}
+                            </select>
+                            
 
                                 {<button onClick={(event) => { handleDeleteActivity(activityId, event) }}>DeleteActivity</button>}
-                                
+                            
                                 {<button key={routine.id} onClick={() => { setActivityOpen({ open: !activityOpen, id: routine.id }) }} activityOpen={activityOpen}>Edit Activity</button>}
                                 {activityOpen.open && activityOpen.id === routine.id ? <> Name:
                                 <input value={count}
