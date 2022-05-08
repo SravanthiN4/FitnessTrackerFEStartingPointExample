@@ -61,6 +61,8 @@ export const getMe = async () => {
             }
         });
         const json = await response.json();
+        localStorage.setItem('username', json.username);
+        console.log("json.username from gerMe api", json.username)
         return json;
     } catch (error) {
         console.error("this is my getMe error!", error)

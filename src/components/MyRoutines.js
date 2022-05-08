@@ -54,7 +54,8 @@ console.log(user, username)
     }
 
     useEffect(() => { (async () => {
-      const myRoutines = await getMyRoutines(username);
+      const userName = localStorage.getItem('username');
+      const myRoutines = await getMyRoutines(userName);
       console.log(myRoutines);
       setMyRoutines(myRoutines);
       })();
@@ -83,7 +84,7 @@ console.log(user, username)
         <div><p></p></div>
         <div> <h2> Here all your routines </h2> 
        <pre><code>{JSON.stringify(myRoutines, null, 2)}</code></pre>
-         {/* <div>{myRoutines.length}</div> */}
+
         <div>{typeof(myRoutines)=="object"? "loading" : myRoutines.map(routine =>
                 <div className="activities" key={routine.name}>
                     <h2>{routine.name}</h2>
