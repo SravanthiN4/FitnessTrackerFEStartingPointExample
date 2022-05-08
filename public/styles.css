@@ -42,6 +42,11 @@
   /* position: fixed;
   width: 100%; */
 }
+
+h2{
+  font-family: Arial, Helvetica, sans-serif;
+
+}
  
  .header h1 {
    font-family: 'Parisienne', cursive;
@@ -158,7 +163,7 @@ flex-direction: column;
   .content {
     border: 5px solid black;
     padding: 10px;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     box-shadow: 3px 3px 3px black;
     background-color: #f14e4e;
     margin: 10px;
@@ -313,3 +318,31 @@ flex-direction: column;
   width: 100%;
   padding: 100px
  }
+
+ #user{
+  background-color: #3eb5e0;
+  border-radius: 10px;
+  box-shadow: 5px 5px 2px rgb(77, 77, 77);
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%; /* Full width */
+  height: 30%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  padding-top: 0px;
+  display: flex;  
+  justify-content: center;
+  }
+
+  .userContent{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 100px;
+    font: Arial;
+    font-size: medium;
+  }

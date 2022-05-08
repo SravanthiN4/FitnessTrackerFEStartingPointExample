@@ -8,6 +8,7 @@ import User from './User';
 import Login from './Login'
 import RegisterLogin from './RegisterLogin';
 import { getRoutines } from '../api';
+// import HomeIcon from @material-ui/icons/homeTwoTone
 
 import { getAllActivities } from '../api';
 
@@ -56,22 +57,13 @@ return (<div className='app'>
                     <button className="button"><Link id='link' to="/activities">Public Activities</Link></button></>} </div>
                 </div>
     
-                    <Route path="/login">
-                        <Login setLoggedIn={setLoggedIn}loggedIn={loggedIn} username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>   
-                    </Route>
-
-                    <Route path="/signUp">
-                        <RegisterLogin setLoggedIn={setLoggedIn} loggedIn={loggedIn} username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>
-                    </Route>
-
-                    <Route path="/user">
-                        <User loggedIn={loggedIn} setLoggedIn={setLoggedIn} username={username} setUsername={setUsername}/>
-                    </Route> 
- 
-            <Route path = "/routines"><Routines routines = {routines} setRoutines = {setRoutines} username = {username}/></Route>  
-            <Route path = "/myRoutines"><MyRoutines routines = {routines} setRoutines = {setRoutines} loggedIn={loggedIn}/></Route>
-            <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
-            <Route path = "/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
+                    <Route path="/login"><Login setLoggedIn={setLoggedIn}loggedIn={loggedIn} username={username} setUsername={setUsername} password={password} setPassword={setPassword}/></Route>
+                    <Route path="/signUp"><RegisterLogin setLoggedIn={setLoggedIn} loggedIn={loggedIn} username={username} setUsername={setUsername} password={password} setPassword={setPassword}/></Route>
+                    <Route path="/user"><User loggedIn={loggedIn} setLoggedIn={setLoggedIn} username={username} setUsername={setUsername}/></Route> 
+                    <Route path ="/routines"><Routines routines = {routines} setRoutines = {setRoutines} username = {username}/></Route>  
+                    <Route path = "/myRoutines"><MyRoutines routines = {routines} setRoutines = {setRoutines} loggedIn={loggedIn}/></Route>
+                    <Route path = "/activities"><Activities activities = {activities} setActivities = {setActivities}/></Route>
+                    <Route path = "/myActivities">< MyActivities activities = {activities} setActivities = {setActivities}/></Route>
 
             </BrowserRouter>
         </div>);
