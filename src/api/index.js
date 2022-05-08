@@ -248,7 +248,7 @@ export const postActivity = async (name, description) => {
                     let response;
                     try {
                         if (token) {
-                            response = await fetch(`${baseUrl}/routines${routineId}`, {
+                            response = await fetch(`${baseUrl}/routines/${routineId}`, {
                                 method: "DELETE",
                                 headers: {
                                     'Content-Type': 'application/json',

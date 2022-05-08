@@ -5,12 +5,7 @@ import { getMe } from '../api';
 
 const User = (props) => {
 
-<<<<<<< HEAD
-    const {loggedIn, setLoggedIn, username} = props;
-    console.log("username", {username});
-=======
     const {loggedIn, setLoggedIn, username, setUsername, user, setUser} = props;
->>>>>>> BranchToFixUserExp-Co-
     
     const logOut = () => {
         localStorage.removeItem("UserToken");
