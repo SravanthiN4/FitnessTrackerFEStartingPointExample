@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
-import MyActivities from './MyActivities';
+import MyActivities from './myActivities';
 import User from './User';
 import Login from './Login'
 import RegisterLogin from './RegisterLogin';
@@ -25,6 +25,10 @@ const [loggedIn, setLoggedIn] = useState(false);
     const allRoutines = await getRoutines();
     setRoutines(allRoutines);
  },[setRoutines])
+
+ 
+//  const [username, setUsername] = useState('');
+//  const [password, setPassword] = useState('');
 
  useEffect(async () => {
     const user = await getMe(username);

@@ -1,0 +1,62 @@
+function UpdateForm(props) {
+    const [name, setName] = useState("");
+    const [goal, setGoal] = useState("");
+    const [isPublic, setIsPublic] = useState(false);
+    const {routines} = props;
+   
+    const handleRoutine = async () => {
+        console.log("creating a new routine");
+
+
+        const routineData = await postRoutine(name, goal, isPublic)
+        console.log("routineData", routineData)
+
+        const newRoutineList = [
+            routineData,
+            ...routines
+        ]
+        console.log("newRoutineList", newRoutineList)
+        setRoutines(newRoutineList);
+
+        setName("");
+        setGoal("");
+        setIsPublic(false);
+    }
+
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+    }
+
+    const handleGoalChange = (event) => {
+        setGoal(event.target.value);
+    }
+
+
+    const handleIsPublic = () => {
+        setIsPublic(!isPublic)
+    }
+
+
+
+  return (
+    <div className="boxForContent">
+                Name:
+                <input value={name}
+                    onChange={handleNameChange} />
+                Goal :
+                <input value={goal}
+                    onChange={handleGoalChange} />
+                Public :
+                <input type="checkbox"
+                    name="isPublic"
+                    value={isPublic}
+                    onChange={handleIsPublic} />
+
+                <button onClick={handleRoutine}>
+                    Submit New Routine
+                </button>
+            </div>
+  )
+}
+
+export default UpdateForm;
