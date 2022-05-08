@@ -24,6 +24,12 @@ const MyRoutines = (props) => {
     const [addOpen, setAddOpen] = useState(false);
     const [activityOpen, setActivityOpen] = useState(false);
 
+    const [editName, setEditHandleName] = useState("");
+    const [editGoal, setEditHandleGoal] = useState("");
+
+    const [editCount, setEditCount] = useState(0);
+    const [editDuration, setEditDuration] = useState(0);
+
       
     useEffect(async () => {
         const getActivityRoutine = await getAllActivities();
@@ -70,18 +76,25 @@ const MyRoutines = (props) => {
         setIsPublic(false);
     }
 
-    const handleNameChange = (event) => {
+    const handleName = (event) => {
         setName(event.target.value);
     }
 
-    const handleGoalChange = (event) => {
+    const handleGoal = (event) => {
         setGoal(event.target.value);
     }
-
 
     const handleIsPublic = () => {
         setIsPublic(!isPublic)
     }
+
+    const editHandleName = (event) => {
+        setEditHandleName(event.target.value);
+    }
+    const editHandleGoal = (event) => {
+        setEditHandleGoal(event.target.value);
+    }
+    
 
     const handleCount = (event) => {
         setCount(event.target.value);
@@ -95,14 +108,13 @@ const MyRoutines = (props) => {
         setActivityId(event.target.value);
     }
 
+    const handleEditCount = (event) => {
+    setEditCount(event.target.value);
+    }
 
-    // const isAuthorFunction = async (username) => {
-    //     const user = await getMe(username);
-    //     return user;
-    // }
-
-    // const user = isAuthorFunction({ username });
-    // console.log(user.object)
+    const handleEditDuration = (event) => {
+        setEditDuration(event.target.value)
+    }
    
     //routine update
     const handleEdit = async (id) => {
@@ -138,10 +150,10 @@ const MyRoutines = (props) => {
             <div className="boxForContent">
                 Name:
                 <input value={name}
-                    onChange={handleNameChange} />
+                    onChange={handleName} />
                 Goal :
                 <input value={goal}
-                    onChange={handleGoalChange} />
+                    onChange={handleGoal} />
                 Public :
                 <input type="checkbox"
                     name="isPublic"
@@ -163,11 +175,11 @@ const MyRoutines = (props) => {
                            
                             {<button key={routine.id} onClick={() => { setEditOpen({ open: !editOpen, id: routine.id }) }} editOpen={editOpen}>Edit</button>}
                             {editOpen.open && editOpen.id === routine.id ? <> Name:
-                                <input value={name}
-                                    onChange={handleNameChange} />
+                                <input value={editName}
+                                    onChange={editHandleName} />
                                 Goal :
-                                <input value={goal}
-                                    onChange={handleGoalChange} /><button onClick={(event) => { handleEdit(routine.id) }}>Submit Edited Routine</button> </> : null}
+                                <input value={editGoal}
+                                    onChange={editHandleGoal} /><button onClick={(event) => { handleEdit(routine.id) }}>Submit Edited Routine</button> </> : null}
             
                             { 
                             <button key={routine.name} onClick={() => { setAddOpen({ open: !addOpen, id: routine.id }) }} addOpen={addOpen}>Add</button>}
@@ -208,15 +220,15 @@ const MyRoutines = (props) => {
                             </select>
                             
 
-                                {<button onClick={(event) => { handleDeleteActivity(activityId, event) }}>DeleteActivity</button>}
+                                {<button onClick={(event) => { handleDeleteActivity(activities.id, event) }}>DeleteActivity</button>}
                             
                                 {<button key={routine.id} onClick={() => { setActivityOpen({ open: !activityOpen, id: routine.id }) }} activityOpen={activityOpen}>Edit Activity</button>}
                                 {activityOpen.open && activityOpen.id === routine.id ? <> Name:
-                                <input value={count}
-                                    onChange={handleCount} />
+                                <input value={editCount}
+                                    onChange={handleEditCount} />
                                 Goal :
-                                <input value={duration}
-                                    onChange={handleDuration} /><button onClick={(event) => { handleEditActivity(routine.id) }}>Submit Edited Routine</button> </> : null}
+                                <input value={editDuration}
+                                    onChange={handleEditDuration} /><button onClick={(event) => { handleEditActivity(routine.id) }}>Submit Edited Routine</button> </> : null}
                             
                             </> 
       
