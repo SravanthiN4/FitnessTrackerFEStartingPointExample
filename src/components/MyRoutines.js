@@ -214,10 +214,10 @@ console.log(user, username)
             </>
 
                 </div>
-            )}</div> }
-        </div>
-        </div>)
-}
+            )} 
+        }
+        
+
 
 
 
