@@ -74,7 +74,8 @@ const MyRoutines = (props) => {
 
     return (
 
-        <> <div>
+
+        <div className='contentBox'>
             <div className="boxForContent">
                 Name:
                 <input value={name}
@@ -91,32 +92,38 @@ const MyRoutines = (props) => {
                 <button onClick={handleRoutine}>
                     Submit New Routine
                 </button>
-            </div>
-        </div>
+ 
+
+
             <>
                 <div> 
                     {routines.map(routine =>
-                        <div className="activities" key={routine.id}>
+                        <div className="content" key={routine.id}>
                             <h2>{routine.name}</h2>
                             <p>{routine.goal}</p> 
-
-                            {<button key={routine.id} onClick={() => { setEditOpen({ open: !editOpen, id: routine.id }) }} editOpen={editOpen}>Edit</button>}
-                            {editOpen.open && editOpen.id === routine.id ? <> Name:
-                                <input value={name}
-                                    onChange={handleNameChange} />
-                                Goal :
-                                <input value={goal}
-                                    onChange={handleGoalChange} /><button onClick={handleEdit(routine.id)}>Submit Edited Routine</button> </> : null}
-
-                            {<button onClick={(event) => { handleDelete(routine.id, event) }}>Delete</button>}
-
+                        {/* <div className='editDeleteButtons'> */}
+                            <div className="editDeleteButtons">
+                            {<button className="editButton"key={routine.id} onClick={() => { setEditOpen({ open: !editOpen, id: routine.id }) }} editOpen={editOpen}>Edit</button>}
+                            
+                            {editOpen.open && editOpen.id === routine.id ? 
+                            <> 
+                            <span>Name : <input value={name} onChange={handleNameChange}/></span>
+                           <span>Goal :  <input value={goal} onChange={handleGoalChange} /><button className="submitEdit" onClick={handleEdit(routine.id)}>Submit Edited Routine</button> </span> </> : null}
+                            </div>
+                            <div className="editDeleteButtons">
+                            {<button className="deleteButton" onClick={(event) => { handleDelete(routine.id, event) }}>Delete</button>}
+                            </div>
+                            {/* </div> */}
                         </div>
                     )}
                 </div>
 
             </>
 
-        </>)
+
+        </div>
+        </div>
+        )
 }
 
 

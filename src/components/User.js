@@ -5,11 +5,15 @@ import React, {useState} from 'react';
 const User = (props) => {
 
     const {loggedIn, setLoggedIn, username} = props;
+    console.log("username", {username});
     
     const logOut = () => {
         localStorage.removeItem("UserToken");
         setLoggedIn(false);
     }
+    
+
+
 
     return (<div> {
         loggedIn ? <> {
