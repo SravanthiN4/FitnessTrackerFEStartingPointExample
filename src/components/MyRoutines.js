@@ -33,8 +33,9 @@ const MyRoutines = (props) => {
       
     useEffect(async () => {
         const getActivityRoutine = await getAllActivities();
-        setActivities(activityList);
-     },[setActivities])
+        setActivityList(getActivityRoutine)
+        console.log("ar",getActivityRoutine);
+     },[])
 
     //delete routine
     const handleDelete = async (routineId, event) => {
@@ -134,7 +135,7 @@ const MyRoutines = (props) => {
     const handleAdd = async (routineId,event) => {
         
         event.preventDefault();
-        const sendActivity = await postActivityToRoutine(routineId, activityId, count, duration);
+        const sendActivity = await postActivityToRoutine(routineId, activity, count, duration);
         const newCount = sendActivity.count;
         const newDuration = sendActivity.duration;
         const newActivityId = sendActivity.activityId;
@@ -194,8 +195,8 @@ const MyRoutines = (props) => {
                                 <input value={duration}
                                     onChange={handleDuration} />
                                 ActivityId:
-                                <input value={activityId}
-                                    onChange={handleActivityId}/>
+                                <input value={activity}
+                                    onChange={(event) => setActivity(event.target.value)}/>
    
                             <button onClick={(event) => { handleAdd(routine.id,event) }}>Submit Added Activity</button> 
                             
@@ -210,10 +211,10 @@ const MyRoutines = (props) => {
                             <select 
             
                                 value={ activity } 
-                                onChange={(event) => setActivities(event.target.value)}>
+                                onChange={(event) => setActivity(event.target.value)}>
                                 <option value="any">Any</option>
                                 {activityList.map((activity, idx) =>
-                                <option key={ `${ idx }:${ activity.name }`} value={ activity.name }>
+                                <option key={ `${ idx }:${ activity.name }`} value={ activity.id }>
                                 { activity.name }
                                 </option>
                                 )}
