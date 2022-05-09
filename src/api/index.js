@@ -207,6 +207,7 @@ export const postActivity = async (name, description) => {
                         )
                     })
                     const postedRoutine = await response.json()
+                    console.log("posted routines from api", postedRoutine)
                     return postedRoutine;
                 } catch (error) {
                     console.log("error in postRoutine!")

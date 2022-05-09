@@ -12,17 +12,14 @@ const User = (props) => {
         localStorage.removeItem("username");
         setLoggedIn(false);
     }
-     useEffect(async () => {
-        const user = await getMe(username);
-        setUser(user);
-        setUsername(user.username)
-        console.log(user);
-    }, []);
+    
+    const userName = localStorage.getItem('username');
+
 
     return (<div> {
         loggedIn ? <> {
             <div className='me'>
-                <h2>Hello, {username}</h2> <p>Not you?<button className="LogOut"
+                <h2>Hello, {userName}</h2> <p>Not you?<button className="LogOut"
         onClick={logOut}>Log out</button>
 </p>
             </div>
