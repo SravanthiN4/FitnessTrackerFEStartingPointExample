@@ -16,7 +16,6 @@ const Routines = (props) => {
     useEffect(() => {
         (async () => {
             const routines = await getRoutines();
-
             console.log("routines",routines);
             setRoutines(routines);
         })();

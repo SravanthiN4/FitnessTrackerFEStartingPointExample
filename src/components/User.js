@@ -1,36 +1,36 @@
-
-import React, {useState} from 'react';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
-import {CgLogOut} from 'react-icons/cg'
+import React, {useState, useEffect} from 'react';
+import { getMe } from '../api';
 
 
 const User = (props) => {
 
-    const {loggedIn, setLoggedIn, username} = props;
-    console.log("username", {username});
+    const {loggedIn, setLoggedIn, username, setUsername, user, setUser} = props;
     
     const logOut = () => {
         localStorage.removeItem("UserToken");
+        localStorage.removeItem("username");
         setLoggedIn(false);
     }
     
 
 
 
-    return (
-    <BrowserRouter>
-    <div id="user"> 
-        {
+     useEffect(async () => {
+        const user = await getMe(username);
+        setUser(user);
+        setUsername(user.username)
+        console.log(user);
+    }, []);
+
+    return (<div> {
         loggedIn ? <> {
-            <div className='userContent'>
-                <h1>Welcome, {username}!</h1> <p className='notYou'>Not you?<button className="signOut" onClick={logOut}>Log out <CgLogOut/></button></p>
+            <div className='me'>
+                <h2>Hello, {username}</h2> <p>Not you?<button className="LogOut"
+        onClick={logOut}>Log out</button>
+</p>
             </div>
-            
         } </> : <div>No user logged in! </div>
-    } 
-    </div>
-    </BrowserRouter>
-    );
+    } </div>);
 };
 
 
