@@ -29,13 +29,12 @@ const MyRoutines = (props) => {
     const [editDuration, setEditDuration] = useState(0);
 
 
-console.log(user, username)
 
-useEffect(async () => {
+useEffect(() => { (async () => {
   const getActivityRoutine = await getAllActivities();
   setActivityList(getActivityRoutine)
-  console.log("ar",getActivityRoutine);
-},[])
+})();
+}, []);
 
 const handleDeleteActivity = async (routineActivityId, event) => {
   event.preventDefault();
@@ -50,7 +49,6 @@ const handleDeleteActivity = async (routineActivityId, event) => {
     const handleDelete = async (routineId, event) => {
         event.preventDefault();
         await deleteRoutineByRoutineId(routineId);
-        console.log("in delete", myRoutines);
         const remainingRoutines = myRoutines.filter((routine) => routineId !== routine.id);
         setRoutines(remainingRoutines);
     }
@@ -58,12 +56,10 @@ const handleDeleteActivity = async (routineActivityId, event) => {
     const handleRoutine = async () => {
         console.log("creating a new routine");
         const routineData = await postRoutine(name, goal, isPublic)
-        console.log("routineData", routineData)
         const newRoutineList = [
             routineData,
             ...routines
         ]
-        console.log("newRoutineList", newRoutineList)
         setRoutines(newRoutineList);
         setName("");
         setGoal("");
@@ -90,21 +86,6 @@ const handleDeleteActivity = async (routineActivityId, event) => {
         setIsPublic(!isPublic)
     }
 
-    const handleName = (event) => {
-      setName(event.target.value);
-  }
-
-  const handleGoal = (event) => {
-      setGoal(event.target.value);
-  }
-
-  const editHandleName = (event) => {
-    setEditHandleName(event.target.value);
-}
-const editHandleGoal = (event) => {
-    setEditHandleGoal(event.target.value);
-}
-
 
 const handleCount = (event) => {
     setCount(event.target.value);
@@ -114,9 +95,6 @@ const handleDuration = (event) => {
    setDuration(event.target.value);
 }
 
-const handleActivityId = (event) => {
-    setActivityId(event.target.value);
-}
 
 const handleEditCount = (event) => {
 setEditCount(event.target.value);
@@ -158,7 +136,6 @@ setMyRoutines(newMyRoutine);
     useEffect(() => { (async () => {
       const userName = localStorage.getItem('username');
       const myRoutines = await getMyRoutines(userName);
-      console.log("myRoutines", myRoutines, typeof(myRoutines), JSON.parse(JSON.stringify(myRoutines)));
       setMyRoutines(myRoutines);
       })();
     }, []);
@@ -185,7 +162,6 @@ setMyRoutines(newMyRoutine);
         </div> 
         <div><p></p></div>
         <div> <h2> Here all your routines </h2> 
-       {/* <pre><code>{JSON.stringify(myRoutines, null, 2)}</code></pre> */}
 
         <div>{myRoutines.map(routine =>
                 <div className="activities" key={routine.name}>
