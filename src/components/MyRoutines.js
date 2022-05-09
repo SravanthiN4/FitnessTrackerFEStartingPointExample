@@ -168,7 +168,7 @@ setMyRoutines(newMyRoutine);
                     <h2>routine name: {routine.name}</h2>
                     <p>routine goal: {routine.goal}</p> 
                     <div>{routine.activities.map(activity => <div key ={activity.id}>
-                      <p>activity name:{activity.name}</p>
+                    <p>activity name:{activity.name}</p>
                     <p>activity description:{activity.description}</p>
                     <p>activity count:{activity.count}</p>
                     <p>activity duration:{activity.duration}</p>

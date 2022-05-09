@@ -12,10 +12,6 @@ const User = (props) => {
         localStorage.removeItem("username");
         setLoggedIn(false);
     }
-    
-
-
-
      useEffect(async () => {
         const user = await getMe(username);
         setUser(user);
