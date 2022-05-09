@@ -328,4 +328,3 @@ export const postActivity = async (name, description) => {
                                 throw error;
                             }
                         }
-                        

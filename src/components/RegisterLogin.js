@@ -39,7 +39,7 @@ const RegisterLogin = (props) => {
     return (
         <div className="Signup">
             {loggedIn ? 
-                <div className='userContent'>
+                <div>
                     <p>You have already an account and are already signed in, {username}!</p>
                     <p>Not you?<button className="LogOut"
                             onClick={logOut}>Log out</button>
