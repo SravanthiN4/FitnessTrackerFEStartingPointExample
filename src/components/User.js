@@ -9,6 +9,7 @@ const User = (props) => {
     
     const logOut = () => {
         localStorage.removeItem("UserToken");
+        localStorage.removeItem("username");
         setLoggedIn(false);
     }
     
