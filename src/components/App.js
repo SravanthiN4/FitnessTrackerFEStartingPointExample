@@ -57,10 +57,10 @@ return (<div className='app'>
                     <button className="button"><Link id='link' to="/routines">Public Routines <GiWeightLiftingUp/> </Link></button> 
                     <button className="button"><Link id='link' to="/activities">Public Activities <BiRun/> </Link></button>
                     </> : <>
-                    <button className="button"> <Link id='link' to="/user">User<ImUser/></Link></button>  
+                    <button className="button"> <Link id='link' to="/user">User <CgUserList/> </Link></button>  
                     <button className="button"><Link id='link' to="/myRoutines">MyRoutines <CgUserList/> <GiWeightLiftingUp/></Link></button> 
-                    <button className="button"><Link id='link' to="/myActivities">MyActivities <CgUserList/><BiRun/> </Link></button>
-                    <button className="button"><Link id='link' to="/routines">Public Routines <GiWeightLiftingUp/></Link></button> 
+                    <button className="button"><Link id='link' to="/myActivities">MyActivities <CgUserList/> <BiRun/> </Link></button>
+                    <button className="button"><Link id='link' to="/routines">Public Routines <GiWeightLiftingUp/> </Link></button> 
                     <button className="button"><Link id='link' to="/activities">Public Activities <BiRun/> </Link></button></>} </div>
                 </div>
     
