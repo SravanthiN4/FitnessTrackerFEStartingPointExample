@@ -12,15 +12,12 @@ const MyActivities = (props) => {
         console.log("creating a new activity");
 
         const activityData = await postActivity(name, description)
-        console.log("activityData", activityData)
 
         const newActivityList = [
             activityData,
             ...activities
         ]
-        console.log("newActivityList", newActivityList)
         setActivities(newActivityList);
-
         setName("");
         setDescription("");
     }

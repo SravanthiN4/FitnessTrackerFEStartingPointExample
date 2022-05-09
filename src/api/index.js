@@ -62,7 +62,6 @@ export const getMe = async () => {
         });
         const json = await response.json();
         localStorage.setItem('username', json.username);
-        console.log("json.username from gerMe api", json.username)
         return json;
     } catch (error) {
         console.error("this is my getMe error!", error)
@@ -82,10 +81,8 @@ export const getMyRoutines = async (username) => {
             }
             
         })
-        console.log(response);
         const json = await response.json()
         return json;
-        console.log("from getMyRoutine", json)
     } catch (error) {
         console.log("error in getMyRoutines!")
         throw [error];
@@ -188,7 +185,6 @@ export const postActivity = async (name, description) => {
                     }
                 })
                 const routines = await response.json()
-                console.log("api",routines)
                 return routines;
             } catch (error) {
                 console.log("error in getRoutines!")
@@ -211,7 +207,6 @@ export const postActivity = async (name, description) => {
                         )
                     })
                     const postedRoutine = await response.json()
-                    console.log(postedRoutine);
                     return postedRoutine;
                 } catch (error) {
                     console.log("error in postRoutine!")

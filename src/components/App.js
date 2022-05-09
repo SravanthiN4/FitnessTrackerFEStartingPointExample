@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Routines from './Routines';
 import MyRoutines from './MyRoutines';
 import Activities from './Activities';
-import MyActivities from './myActivities';
+import MyActivities from './MyActivities';
 import User from './User';
 import Login from './Login'
 import RegisterLogin from './RegisterLogin';
@@ -21,29 +21,24 @@ const App = () => {
 
 const [loggedIn, setLoggedIn] = useState(false);
 
- useEffect(async () => {
+useEffect(() => { (async () => {
     const allRoutines = await getRoutines();
     setRoutines(allRoutines);
- },[setRoutines])
+})();
+}, []);
 
- 
-//  const [username, setUsername] = useState('');
-//  const [password, setPassword] = useState('');
 
- useEffect(async () => {
+
+useEffect(() => { (async () => {
     const user = await getMe(username);
     setUser(user);
-    setUsername(user.username)
-}, [setUsername]);
-
-useEffect(async () => {
-    const routines = await getMyRoutines(username);
-    console.log("routines",routines);
-    setMyRoutines(routines);
-}, [setMyRoutines]);
+})();
+}, []);
 
 
-useEffect(() => {
+
+
+useEffect(() => { 
     setLoggedIn(!!localStorage.getItem("UserToken"))
 }, []);
 
