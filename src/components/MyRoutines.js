@@ -53,32 +53,49 @@ const handleDeleteActivity = async (routineActivityId, event) => {
         setRoutines(remainingRoutines);
     }
  
-    const handleRoutine = async () => {
-        console.log("creating a new routine");
-        const routineData = await postRoutine(name, goal, isPublic)
-        const newRoutineList = [
-            routineData,
-            ...routines
-        ]
-        setRoutines(newRoutineList);
-        setName("");
-        setGoal("");
-        setIsPublic(false);
-    }
+    // const handleCreateRoutine = async () => {
+    //     console.log("creating a new routine");
+    //     const routineData = await postRoutine(name, goal, isPublic)
+    //     setName("");
+    //     setGoal("");
+    //     setIsPublic(false);
+    //     const userName = localStorage.getItem('username');
+    //     const myRoutines = await getMyRoutines(userName);
+    //     setMyRoutines(myRoutines);
+      
+    // }
+
+    const handleCreateRoutine = async (event) => {
+      event.preventDefault();
+      console.log("creating a new routine");
+      try{const routineData = await postRoutine(name, goal, isPublic)
+      const newRoutineList = [
+          routineData,
+          ...routines
+      ]
+      setMyRoutines(newRoutineList);}
+      catch(error){
+        console.log(error)
+      }
+  }
 
     const handleNameChange = (event) => {
+      event.preventDefault();
         setName(event.target.value);
     }
 
     const handleGoalChange = (event) => {
+      event.preventDefault();
         setGoal(event.target.value);
     }
 
     const handleCreateNameChange = (event) => {
+      event.preventDefault();
       setCreateName(event.target.value);
   }
 
   const handleCreateGoalChange = (event) => {
+    event.preventDefault();
       setCreateGoal(event.target.value);
   }
 
@@ -88,19 +105,23 @@ const handleDeleteActivity = async (routineActivityId, event) => {
 
 
 const handleCount = (event) => {
+  event.preventDefault();
     setCount(event.target.value);
 }
 
 const handleDuration = (event) => {
+  event.preventDefault();
    setDuration(event.target.value);
 }
 
 
 const handleEditCount = (event) => {
+  event.preventDefault();
 setEditCount(event.target.value);
 }
 
 const handleEditDuration = (event) => {
+  event.preventDefault();
     setEditDuration(event.target.value)
 }
 
@@ -142,29 +163,32 @@ setMyRoutines(newMyRoutine);
     
         return (<div>
            <div> <h2>Create a new routine:</h2>
-            <div className="boxForContent">
-                Name:
-                <input value={createName}
-                    onChange={handleCreateNameChange} />
-                Goal :
-                <input value={createGoal}
-                    onChange={handleCreateGoalChange} />
-                Public :
-                <input type="checkbox"
-                    name="isPublic"
-                    value={isPublic}
-                    onChange={handleIsPublic} />
+           <form onSubmit={(event) => { handleCreateRoutine(event) }}>
+                <div>
+                <label htmlFor='name'>Name:</label>
+                <input type='text' name='name' value={createName} onChange={handleCreateNameChange} />
+                </div>
 
-                <button onClick={handleRoutine}>
-                    Submit New Routine
-                </button>
-            </div>
+                <div>
+                <label htmlFor='goal'>Goal:</label>
+                <input type='goal' name='goal' value={createGoal} onChange={handleCreateGoalChange} />
+                </div>
+
+                <div>
+                <label htmlFor='isPublic'>Is Public?</label>
+                <input type='checkbox' name='isPublic' value={isPublic} onChange={handleIsPublic} />
+                </div>
+
+                <div id='submitButton'>
+                <button className="submit" type='submit'>Submit new routine</button>
+                </div>
+            </form> 
+          
         </div> 
-        <div><p></p></div>
         <div> <h2> Here all your routines </h2> 
 
-        <div>{myRoutines.map(routine =>
-                <div className="activities" key={routine.name}>
+        <div>{!myRoutines? <div> Nothing to show, yet! Add a routine! </div> : <div> {myRoutines.map(routine =>
+                <div className="activities" key={routine.id}>
                     <h2>routine name: {routine.name}</h2>
                     <p>routine goal: {routine.goal}</p> 
                     <div>{routine.activities.map(activity => <div key ={activity.id}>
@@ -235,7 +259,7 @@ setMyRoutines(newMyRoutine);
                    
                     {<button onClick={(event) => { handleDelete(routine.id, event) }}>Delete</button>}
                 </div>
-            )}</div>
+            ) }</div> }</div>
         </div>
         </div>)
 }
