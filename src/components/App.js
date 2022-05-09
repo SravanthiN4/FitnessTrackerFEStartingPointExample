@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 import {FiLogIn} from 'react-icons/fi'
 import {FaRegIdCard} from 'react-icons/fa'
-import {ImUser} from 'react-icons/im'
 import {BiRun} from 'react-icons/bi'
 import {GiWeightLiftingUp} from 'react-icons/gi'
 import {CgUserList} from 'react-icons/cg'
